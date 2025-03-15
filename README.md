@@ -2,10 +2,15 @@
 
 This FastAPI application provides an API to query crop information from BigQuery in the Helios Tech Interview Project.
 
-## Install dependencies:
+## Documentation
 #### Documentation of the solution implemented in big query and api implemented in cloud run available in the index.html file
 ```bash
 ./docs/index.html
+```
+
+## Start Project in Big Query
+```bash
+python .\bq_start\bq_init.py
 ```
 
 ## Prerequisites
@@ -14,6 +19,7 @@ This FastAPI application provides an API to query crop information from BigQuery
 - Docker (optional)
 - GCP Service Account with BigQuery access
 
+## Install dependencies:
 1. Install dependencies:
 ```bash
 pip install -r requirements.txt
