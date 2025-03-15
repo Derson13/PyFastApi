@@ -1,0 +1,1 @@
+CALL `helios-tech-interview-project.result_test.pr_1_calculate_growing`(604558938247004159, '25f03b85-7418-4e92-be02-b52fbb852183');

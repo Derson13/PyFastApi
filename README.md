@@ -8,6 +8,11 @@ This FastAPI application provides an API to query crop information from BigQuery
 - Docker (optional)
 - GCP Service Account with BigQuery access
 
+0. Install dependencies:
+## Documentation of the solution implemented in big query and api implemented in cloud run available in the index.html file
+```bash
+- ./docs/index.html
+```
 1. Install dependencies:
 ```bash
 pip install -r requirements.txt

@@ -9,10 +9,6 @@ class CropInfo(Crop):
     crop_id: str    
     pass
 
-class CropUpdate(Crop):
-    crop_id: str
-    pass
-
 class CropCreate(Crop):
     pass
 

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Viewer - Helios Tech Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .code-container {
+            font-family: 'Consolas', monospace;
+            background-color: #2d2d2d;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            flex-grow: 1;
+            position: relative;
+        }
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+        .header {
+            color: white;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .toolbar {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+            background-color: rgba(45, 45, 45, 0.9);
+            padding: 5px;
+            border-radius: 4px;
+        }
+        .toolbar button {
+            padding: 5px 10px;
+            font-size: 0.9em;
+        }
+        .copy-feedback {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 4px;
+            display: none;
+            z-index: 1000;
+        }
+        .language-badge {
+            font-size: 0.8em;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: #3498db;
+            color: white;
+            margin-left: 10px;
+        }
+        .btn-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .line-numbers {
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: 20px 10px;
+            background-color: #252525;
+            color: #666;
+            text-align: right;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <a href="index.html" class="btn btn-primary btn-icon">
+                <i class="bi bi-arrow-left"></i> Back to Documentation
+            </a>
+            <div class="d-flex align-items-center">
+                <h1 class="header mb-0" id="codeTitle">Code Viewer</h1>
+                <span class="language-badge" id="languageBadge">SQL</span>
+            </div>
+        </div>
+        
+        <div class="code-container">
+            <div class="toolbar">
+                <button class="btn btn-sm btn-outline-light btn-icon" onclick="copyCode()">
+                    <i class="bi bi-clipboard"></i> Copy
+                </button>
+                <button class="btn btn-sm btn-outline-light btn-icon" onclick="downloadCode()">
+                    <i class="bi bi-download"></i> Download
+                </button>                
+            </div>
+            <div class="line-numbers" id="lineNumbers"></div>
+            <pre><code id="codeContent"></code></pre>
+        </div>
+    </div>
+
+    <div class="copy-feedback" id="copyFeedback">
+        Código copiado!
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = decodeURIComponent(urlParams.get('code') || '');
+            const title = decodeURIComponent(urlParams.get('title') || 'Code Viewer');
+            const language = detectLanguage(code);
+            
+            document.getElementById('codeContent').textContent = code;
+            document.getElementById('codeTitle').textContent = title;
+            document.getElementById('languageBadge').textContent = language.toUpperCase();
+            
+            // Highlight code
+            Prism.highlightElement(document.getElementById('codeContent'));
+            
+            // Add line numbers
+            updateLineNumbers();
+        });
+
+        function detectLanguage(code) {
+            if (code.includes('CREATE OR REPLACE')) return 'sql';
+            if (code.includes('def ') || code.includes('class ')) return 'python';
+            return 'text';
+        }
+
+        function updateLineNumbers() {
+            const code = document.getElementById('codeContent').textContent;
+            const lines = code.split('\n');
+            const lineNumbers = document.getElementById('lineNumbers');
+            lineNumbers.innerHTML = lines.map((_, i) => i + 1).join('\n');
+        }
+
+        function copyCode() {
+            const code = document.getElementById('codeContent').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const feedback = document.getElementById('copyFeedback');
+                feedback.style.display = 'block';
+                setTimeout(() => {
+                    feedback.style.display = 'none';
+                }, 2000);
+            });
+        }
+
+        function downloadCode() {
+            const code = document.getElementById('codeContent').textContent;
+            const title = document.getElementById('codeTitle').textContent;
+            const language = document.getElementById('languageBadge').textContent.toLowerCase();
+            const extension = language === 'sql' ? '.sql' : language === 'python' ? '.py' : '.txt';
+            
+            const blob = new Blob([code], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = title.toLowerCase().replace(/\s+/g, '_') + extension;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        let isWrapped = true;
+        function toggleWrap() {
+            const pre = document.querySelector('pre');
+            isWrapped = !isWrapped;
+            pre.style.whiteSpace = isWrapped ? 'pre-wrap' : 'pre';
+        }
+    </script>
+</body>
+</html> 

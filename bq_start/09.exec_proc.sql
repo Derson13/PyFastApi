@@ -1,0 +1,1 @@
+CALL `helios-tech-interview-project.result_test.pr_2_daily_risk`(603812801764392959, '65118be8-297c-4c3b-a6dc-7ed3cf593083');

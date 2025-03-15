@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helios Tech Project Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #f43f5e;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --hover-bg: #f1f5f9;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .documentation-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .documentation-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .documentation-header h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .documentation-header .lead {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .section-card h3 {
+            font-weight: 600;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .code-icon {
+            font-size: 1.75rem;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .code-icon:hover {
+            color: var(--accent-color);
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .api-endpoint {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .api-endpoint:hover {
+            background: var(--hover-bg);
+            transform: translateX(5px);
+        }
+
+        .method-badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
+
+        .get { 
+            background-color: #60a5fa;
+            color: #1e3a8a;
+        }
+        
+        .post { 
+            background-color: #34d399;
+            color: #064e3b;
+        }
+
+        .put { 
+            background-color: #fbbf24;
+            color: #92400e;
+        }
+
+        .delete { 
+            background-color: #f87171;
+            color: #991b1b;
+        }
+
+        .preview-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .preview-link:hover {
+            color: var(--accent-color);
+        }
+
+        .code-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-left: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--accent-color);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .code-link:hover {
+            opacity: 1;
+            transform: translateX(2px);
+        }
+
+        .endpoint-description {
+            margin-top: 1rem;
+            color: #64748b;
+        }
+
+        .endpoint-params {
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .param-name {
+            color: var(--primary-color);
+            font-family: monospace;
+            background: var(--bg-color);
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+        }
+
+        .param-type {
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .endpoint-response {
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .code-preview {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            white-space: pre;
+            overflow-x: auto;
+            tab-size: 4;
+        }
+
+        .code-preview::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .code-preview::-webkit-scrollbar-track {
+            background: #2d2d2d;
+            border-radius: 4px;
+        }
+
+        .code-preview::-webkit-scrollbar-thumb {
+            background: #4a4a4a;
+            border-radius: 4px;
+        }
+
+        .code-preview::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .popover {
+            max-width: 800px;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            background: #2d2d2d;
+        }
+
+        .popover-body {
+            padding: 0;
+            background: #2d2d2d;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .preview-container {
+            background: linear-gradient(45deg, #2d2d2d, #1a1a1a);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .preview-header span {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .preview-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .preview-actions button {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            color: #fff;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.25rem;
+            transition: all 0.2s;
+        }
+
+        .preview-actions button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .code-preview {
+            padding: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .code-preview::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .code-preview::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .code-preview::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        .code-preview pre {
+            margin: 0;
+        }
+
+        .code-preview code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <header class="documentation-header text-center">
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown">Helios Tech Project Documentation</h1>
+            <p class="lead animate__animated animate__fadeInUp">Comprehensive guide to BigQuery Structure and FastAPI Integration</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="bigquery" class="mb-5">
+            <h2 class="section-title">BigQuery Structure</h2>
+            
+            <!-- Views -->
+            <div class="section-card animate__animated animate__fadeInUp">
+                <h3>
+                    <i class="bi bi-table code-icon"></i>
+                    Views
+                </h3>
+                <p>Custom views for data analysis and reporting.</p>
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                        <strong>
+                            <a class="preview-link" 
+                                data-bs-toggle="popover" 
+                                data-bs-trigger="hover"
+                                data-bs-html="true"
+                                data-bs-content="<div class='code-preview'>CREATE OR REPLACE VIEW `helios-tech-interview-project.result_test.vw_weight`
+AS
+SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-1  AS pr_year 
+UNION ALL
+SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-2  AS pr_year 
+/* ... more UNION ALLs ... */</div>">
+                                <i class="bi bi-eye-fill"></i>
+                                vw_weight
+                            </a>
+                            <a href="javascript:void(0)" 
+                               onclick="viewCode('vw_weight View', document.querySelector('#viewsModal .code-block code').textContent)"
+                               class="code-link">
+                                <i class="bi bi-code-square"></i>
+                                Ver código completo
+                            </a>
+                        </strong>
+                        <p class="mt-2">Calcula os pesos históricos para análise temporal, com pesos decrescentes para anos mais antigos.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Functions -->
+            <div class="section-card animate__animated animate__fadeInUp">
+                <h3>
+                    <i class="bi bi-code-square code-icon"></i>
+                    Functions
+                </h3>
+                <p>Custom functions for date and calculations.</p>
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                        <strong>
+                            <a class="preview-link"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-html="true"
+                                data-bs-content="<div class='code-preview'>CREATE OR REPLACE FUNCTION `helios-tech-interview-project.result_test.fc_first_day_week_of_year`(
+    YEAR INT64, 
+    WEEK_NUM INT64
+) 
+RETURNS DATE AS (
+    WITH CTE_DATES AS (
+        SELECT DATE_ADD(DATE(YEAR, 1, 1), INTERVAL -x DAY) AS date_in_range
+        FROM UNNEST(GENERATE_ARRAY(0, 7)) AS x
+    )
+    /* ... more CTEs and logic ... */
+)</div>">
+                                <i class="bi bi-eye-fill"></i>
+                                fc_first_day_week_of_year
+                            </a>
+                            <a href="javascript:void(0)" 
+                               onclick="viewCode('First Day of Week Function', document.querySelector('#functionsModal .code-block code').textContent)"
+                               class="code-link">
+                                <i class="bi bi-code-square"></i>
+                                Ver código completo
+                            </a>
+                        </strong>
+                        <p class="mt-2">Calcula o primeiro dia da semana para um determinado ano e número da semana.</p>
+                        <strong>Parâmetros:</strong>
+                        <ul>
+                            <li><span class="param-name">YEAR</span> <span class="param-type">(INT64)</span> - Ano</li>
+                            <li><span class="param-name">WEEK_NUM</span> <span class="param-type">(INT64)</span> - Número da semana</li>
+                        </ul>
+                        <strong>Retorno:</strong> DATE - Primeiro dia da semana especificada
+                    </li>
+
+                    <li class="mb-3">
+                        <strong>
+                            <a class="preview-link"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-html="true"
+                                data-bs-content="<div class='code-preview'>CREATE OR REPLACE FUNCTION `helios-tech-interview-project.result_test.fc_end_day_week_of_year`(YEAR INT64, WEEK_NUM INT64) RETURNS DATE AS (
+  DATE_ADD(
+    DATE_ADD(
+      DATE(YEAR, 1, 1),
+      INTERVAL (WEEK_NUM - 1) WEEK
+    ),
+    INTERVAL 6 DAY
+  )
+);</div>">
+                                <i class="bi bi-eye-fill"></i>
+                                fc_end_day_week_of_year
+                            </a>
+                            <a href="javascript:void(0)" 
+                               onclick="viewCode('fc_end_day_week_of_year Function', document.querySelector('#functionsModal .code-block code').textContent)"
+                               class="code-link">
+                                <i class="bi bi-code-square"></i>
+                                Ver código completo
+                            </a>
+                        </strong>
+                        <p class="mt-2">Calcula o último dia da semana para um determinado ano e número da semana.</p>
+                        <strong>Parâmetros:</strong>
+                        <ul>
+                            <li><span class="param-name">YEAR</span> <span class="param-type">(INT64)</span> - Ano</li>
+                            <li><span class="param-name">WEEK_NUM</span> <span class="param-type">(INT64)</span> - Número da semana</li>
+                        </ul>
+                        <strong>Retorno:</strong> DATE - Último dia da semana especificada
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Procedures -->
+            <div class="section-card animate__animated animate__fadeInUp">
+                <h3>
+                    <i class="bi bi-gear code-icon"></i>
+                    Procedures
+                </h3>
+                <p>Stored procedures for business logic.</p>
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                        <strong>
+                            <a class="preview-link"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-html="true"
+                                data-bs-content="<div class='code-preview'>CREATE OR REPLACE PROCEDURE `helios-tech-interview-project.result_test.pr_1_calculate_growing`(pr_h3_index INT64, pr_crop_id_or_name STRING)
+BEGIN
+  -- Calcula as temporadas de cultivo para uma cultura em uma localização específica
+  -- Utiliza dados de temperatura e requisitos da cultura para determinar períodos adequados
+  DECLARE v_crop_id STRING;
+  DECLARE v_min_temp FLOAT64;
+  DECLARE v_max_temp FLOAT64;
+  
+  -- Obtém informações da cultura
+  SELECT crop_id, min_temp, max_temp
+  INTO v_crop_id, v_min_temp, v_max_temp
+  FROM `helios-tech-interview-project.shared.crops`
+  WHERE crop_id = pr_crop_id_or_name OR crop_name = pr_crop_id_or_name;
+  
+  -- Calcula e insere as temporadas de cultivo
+  INSERT INTO `helios-tech-interview-project.result_test.tb_1_growing_seasons`
+  SELECT 
+    pr_h3_index as h3index_num,
+    v_crop_id as crop_id,
+    EXTRACT(WEEK FROM date) as season_start_week,
+    EXTRACT(WEEK FROM date) as season_end_week,
+    date as season_start_date,
+    date as season_end_date,
+    1 as length_of_season_weeks,
+    7 as length_of_season_days
+  FROM `helios-tech-interview-project.shared.temperature`
+  WHERE h3index_num = pr_h3_index
+    AND avg_temp BETWEEN v_min_temp AND v_max_temp;
+END;</div>">
+                                <i class="bi bi-eye-fill"></i>
+                                pr_1_calculate_growing
+                            </a>
+                            <a href="javascript:void(0)" 
+                               onclick="viewCode('pr_1_calculate_growing Procedure', document.querySelector('#proceduresModal .code-block code').textContent)"
+                               class="code-link">
+                                <i class="bi bi-code-square"></i>
+                                Ver código completo
+                            </a>
+                        </strong>
+                        <p class="mt-2">Procedimento que calcula as temporadas de cultivo para uma cultura em uma localização específica.</p>
+                        <strong>Parâmetros:</strong>
+                        <ul>
+                            <li><span class="param-name">pr_h3_index</span> <span class="param-type">(INT64)</span> - Índice H3 da localização</li>
+                            <li><span class="param-name">pr_crop_id_or_name</span> <span class="param-type">(STRING)</span> - ID ou nome da cultura</li>
+                        </ul>
+                    </li>
+
+                    <li class="mb-3">
+                        <strong>
+                            <a class="preview-link"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-html="true"
+                                data-bs-content="<div class='code-preview'>CREATE OR REPLACE PROCEDURE `helios-tech-interview-project.result_test.pr_2_daily_risk`(pr_h3_index INT64, pr_crop_id_or_name STRING)
+BEGIN
+  -- Calcula o risco diário para uma cultura em uma localização específica
+  -- Baseado nas temperaturas e limites da cultura
+  DECLARE v_crop_id STRING;
+  DECLARE v_min_temp FLOAT64;
+  DECLARE v_max_temp FLOAT64;
+  
+  -- Obtém informações da cultura
+  SELECT crop_id, min_temp, max_temp
+  INTO v_crop_id, v_min_temp, v_max_temp
+  FROM `helios-tech-interview-project.shared.crops`
+  WHERE crop_id = pr_crop_id_or_name OR crop_name = pr_crop_id_or_name;
+  
+  -- Calcula e insere os riscos diários
+  INSERT INTO `helios-tech-interview-project.result_test.tb_2_daily_risk`
+  SELECT 
+    pr_h3_index as h3index_num,
+    v_crop_id as crop_id,
+    date,
+    CASE
+      WHEN avg_temp < v_min_temp THEN 'COLD'
+      WHEN avg_temp > v_max_temp THEN 'HOT'
+      ELSE 'NORMAL'
+    END as risk_type
+  FROM `helios-tech-interview-project.shared.temperature`
+  WHERE h3index_num = pr_h3_index;
+END;</div>">
+                                <i class="bi bi-eye-fill"></i>
+                                pr_2_daily_risk
+                            </a>
+                            <a href="javascript:void(0)" 
+                               onclick="viewCode('pr_2_daily_risk Procedure', document.querySelector('#proceduresModal .code-block code').textContent)"
+                               class="code-link">
+                                <i class="bi bi-code-square"></i>
+                                Ver código completo
+                            </a>
+                        </strong>
+                        <p class="mt-2">Procedimento que calcula o risco diário para uma cultura em uma localização específica.</p>
+                        <strong>Parâmetros:</strong>
+                        <ul>
+                            <li><span class="param-name">pr_h3_index</span> <span class="param-type">(INT64)</span> - Índice H3 da localização</li>
+                            <li><span class="param-name">pr_crop_id_or_name</span> <span class="param-type">(STRING)</span> - ID ou nome da cultura</li>
+                        </ul>
+                    </li>
+
+                    <li class="mb-3">
+                        <strong>
+                            <a class="preview-link"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-html="true"
+                                data-bs-content="<div class='code-preview'>CREATE OR REPLACE PROCEDURE `helios-tech-interview-project.result_test.pr_3_api_crop_risk`(pr_crop_id_or_name STRING, actual_temp FLOAT64)
+BEGIN
+  -- Avalia o risco para uma cultura com base na temperatura atual
+  DECLARE v_crop_id STRING;
+  DECLARE v_min_temp FLOAT64;
+  DECLARE v_max_temp FLOAT64;
+  
+  -- Obtém informações da cultura
+  SELECT crop_id, min_temp, max_temp
+  INTO v_crop_id, v_min_temp, v_max_temp
+  FROM `helios-tech-interview-project.shared.crops`
+  WHERE crop_id = pr_crop_id_or_name OR crop_name = pr_crop_id_or_name;
+  
+  -- Insere o resultado da avaliação
+  INSERT INTO `helios-tech-interview-project.result_test.tb_3_api_crop_risk`
+  SELECT 
+    v_crop_id as crop_id,
+    actual_temp as temperature,
+    CASE
+      WHEN actual_temp < v_min_temp THEN 'COLD'
+      WHEN actual_temp > v_max_temp THEN 'HOT'
+      ELSE 'NORMAL'
+    END as risk_type;
+END;</div>">
+                                <i class="bi bi-eye-fill"></i>
+                                pr_3_api_crop_risk
+                            </a>
+                            <a href="javascript:void(0)" 
+                               onclick="viewCode('API Crop Risk Procedure', document.querySelector('#proceduresModal .code-block code').textContent)"
+                               class="code-link">
+                                <i class="bi bi-code-square"></i>
+                                Ver código completo
+                            </a>
+                        </strong>
+                        <p class="mt-2">Procedimento que avalia o risco para uma cultura com base na temperatura atual.</p>
+                        <strong>Parâmetros:</strong>
+                        <ul>
+                            <li><span class="param-name">pr_crop_id_or_name</span> <span class="param-type">(STRING)</span> - ID ou nome da cultura</li>
+                            <li><span class="param-name">actual_temp</span> <span class="param-type">(FLOAT64)</span> - Temperatura atual</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="fastapi" class="mb-5">
+            <h2 class="section-title">FastAPI Documentation</h2>
+
+            <div class="section-card animate__animated animate__fadeInUp">
+                <h3>
+                    <i class="bi bi-hdd-network code-icon"></i>
+                    API Endpoints
+                </h3>
+
+                <!-- GET /crop-info/ -->
+                <div class="api-endpoint">
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="method-badge get">GET</span>
+                        <code>
+                            <a class="preview-link"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-html="true"
+                                data-bs-content="<div class='code-preview'>@router.get('/crop-info/', response_model=List[model.CropInfo])
+async def get_crop_info(crop_id: Optional[str] = None, name: Optional[str] = None):
+    query = 'SELECT * FROM `helios-tech-interview-project.shared.crop_info`'
+    if crop_id:
+        query += f&quot; WHERE crop_id = '{crop_id}'&quot;
+    if name:
+        query += f&quot; WHERE name = '{name}'&quot;
+    return bq.exec_query_bq(query)</div>">
+                                <i class="bi bi-eye-fill"></i>
+                                /crop-info/
+                            </a>
+                            <a href="javascript:void(0)" 
+                               onclick="viewCode('GET /crop-info/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent.split('@router.post')[0])"
+                               class="code-link">
+                                <i class="bi bi-code-square"></i>
+                                Ver código completo
+                            </a>
+                        </code>
+                    </div>
+                    <div class="endpoint-description">
+                        Obtém informações sobre uma cultura específica por ID ou nome.
+                    </div>
+                    <div class="endpoint-params">
+                        <strong>Parâmetros:</strong>
+                        <ul>
+                            <li><span class="param-name">crop_id</span> <span class="param-type">(string, opcional)</span> - ID único da cultura</li>
+                            <li><span class="param-name">name</span> <span class="param-type">(string, opcional)</span> - Nome da cultura</li>
+                        </ul>
+                    </div>
+                    <div class="endpoint-response">
+                        <strong>Resposta:</strong> Lista de objetos CropInfo contendo dados da cultura
+                    </div>
+                </div>
+
+                <!-- POST /crop-insert/ -->
+                <div class="api-endpoint">
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="method-badge post">POST</span>
+                        <code>
+                            <a class="preview-link"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-html="true"
+                                data-bs-content="<div class='code-preview'>@router.post('/crop-insert/', response_model=dict)
+async def create_crop(crop: model.CropCreate):
+    query = f&quot;INSERT INTO `helios-tech-interview-project.shared.crop_info`
+            (crop_id, name, temp_min, temp_max)
+            VALUES (GENERATE_UUID(), '{crop.name}', {crop.temp_min}, {crop.temp_max})&quot;
+    return bq.exec_dml_query_bq(query)</div>">
+                                <i class="bi bi-eye-fill"></i>
+                                /crop-insert/
+                            </a>
+                            <a href="javascript:void(0)" 
+                               onclick="viewCode('POST /crop-insert/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent.split('@router.post')[1].split('@router.get')[0])"
+                               class="code-link">
+                                <i class="bi bi-code-square"></i>
+                                Ver código completo
+                            </a>
+                        </code>
+                    </div>
+                    <div class="endpoint-description">
+                        Cria uma nova cultura com suas características de temperatura.
+                    </div>
+                    <div class="endpoint-params">
+                        <strong>Body:</strong>
+                        <ul>
+                            <li><span class="param-name">name</span> <span class="param-type">(string, obrigatório)</span> - Nome da cultura</li>
+                            <li><span class="param-name">temp_min</span> <span class="param-type">(float, obrigatório)</span> - Temperatura mínima ideal</li>
+                            <li><span class="param-name">temp_max</span> <span class="param-type">(float, obrigatório)</span> - Temperatura máxima ideal</li>
+                        </ul>
+                    </div>
+                    <div class="endpoint-response">
+                        <strong>Resposta:</strong> Confirmação da inserção com status
+                    </div>
+                </div>
+
+                <!-- GET /crop-risk-temp/ -->
+                <div class="api-endpoint">
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="method-badge get">GET</span>
+                        <code>
+                            <a class="preview-link"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-html="true"
+                                data-bs-content="<div class='code-preview'>@router.get('/crop-risk-temp/', response_model=List[model.CropInfo])
+async def get_crop_risk(temperature: float, crop_id: Optional[str] = None, name: Optional[str] = None):
+    search_value = crop_id if crop_id else name
+    query = f&quot;CALL `helios-tech-interview-project.result_test.pr_3_api_crop_risk`(
+        '{search_value}', {temperature});&quot;
+    return bq.exec_query_bq(query)</div>">
+                                <i class="bi bi-eye-fill"></i>
+                                /crop-risk-temp/
+                            </a>
+                            <a href="javascript:void(0)" 
+                               onclick="viewCode('GET /crop-risk-temp/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent.split('@router.get(\'/crop-risk-temp/\')')[1])"
+                               class="code-link">
+                                <i class="bi bi-code-square"></i>
+                                Ver código completo
+                            </a>
+                        </code>
+                    </div>
+                    <div class="endpoint-description">
+                        Avalia o risco de uma cultura com base na temperatura atual.
+                    </div>
+                    <div class="endpoint-params">
+                        <strong>Parâmetros:</strong>
+                        <ul>
+                            <li><span class="param-name">temperature</span> <span class="param-type">(float, obrigatório)</span> - Temperatura atual</li>
+                            <li><span class="param-name">crop_id</span> <span class="param-type">(string, opcional)</span> - ID da cultura</li>
+                            <li><span class="param-name">name</span> <span class="param-type">(string, opcional)</span> - Nome da cultura</li>
+                        </ul>
+                    </div>
+                    <div class="endpoint-response">
+                        <strong>Resposta:</strong> Informações da cultura com status de risco
+                    </div>
+                </div>
+
+                <!-- GET /supplier/ -->
+                <div class="api-endpoint">
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="method-badge get">GET</span>
+                        <code>
+                            <a class="preview-link"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-html="true"
+                                data-bs-content="<div class='code-preview'>@router.get('/supplier/', response_model=List[SupplierInfo])
+async def get_supplier_info(poi_id: Optional[str] = None, supplier_name: Optional[str] = None):
+    query = 'SELECT * FROM `helios-tech-interview-project.shared.places_of_interest`'
+    if poi_id:
+        query += f&quot; WHERE poi_id = '{poi_id}'&quot;
+    if supplier_name:
+        query += f&quot; WHERE supplier_name = '{supplier_name}'&quot;
+    return bq.exec_query_bq(query)</div>">
+                                <i class="bi bi-eye-fill"></i>
+                                /supplier/
+                            </a>
+                            <a href="javascript:void(0)" 
+                               onclick="viewCode('GET /supplier/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent, 'supplier')"
+                               class="code-link">
+                                <i class="bi bi-code-square"></i>
+                                Ver código completo
+                            </a>
+                        </code>
+                    </div>
+                    <div class="endpoint-description">
+                        Obtém informações sobre fornecedores por ID ou nome.
+                    </div>
+                    <div class="endpoint-params">
+                        <strong>Parâmetros:</strong>
+                        <ul>
+                            <li><span class="param-name">poi_id</span> <span class="param-type">(string, opcional)</span> - ID do ponto de interesse</li>
+                            <li><span class="param-name">supplier_name</span> <span class="param-type">(string, opcional)</span> - Nome do fornecedor</li>
+                        </ul>
+                    </div>
+                    <div class="endpoint-response">
+                        <strong>Resposta:</strong> Lista de objetos SupplierInfo contendo dados do fornecedor
+                    </div>
+                </div>
+
+                <!-- GET /growing-info/ -->
+                <div class="api-endpoint">
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="method-badge get">GET</span>
+                        <code>
+                            <a class="preview-link"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-html="true"
+                                data-bs-content="<div class='code-preview'>@router.get('/growing-info/', response_model=List[model.GrowingInfo])
+async def get_growing_info(h3index_num: Optional[int] = None, crop_id: Optional[str] = None):
+    query = 'SELECT * FROM `helios-tech-interview-project.result_test.tb_1_growing_seasons` WHERE 1=1'
+    if h3index_num:
+        query += f&quot; AND h3index_num = {h3index_num}&quot;
+    if crop_id:
+        query += f&quot; AND crop_id = '{crop_id}'&quot;
+    return bq.exec_query_bq(query)</div>">
+                                <i class="bi bi-eye-fill"></i>
+                                /growing-info/
+                            </a>
+                            <a href="javascript:void(0)" 
+                               onclick="viewCode('GET /growing-info/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent)"
+                               class="code-link">
+                                <i class="bi bi-code-square"></i>
+                                Ver código completo
+                            </a>
+                        </code>
+                    </div>
+                    <div class="endpoint-description">
+                        Obtém informações sobre temporadas de cultivo por índice H3 ou ID da cultura.
+                    </div>
+                    <div class="endpoint-params">
+                        <strong>Parâmetros:</strong>
+                        <ul>
+                            <li><span class="param-name">h3index_num</span> <span class="param-type">(integer, opcional)</span> - Índice H3 da localização</li>
+                            <li><span class="param-name">crop_id</span> <span class="param-type">(string, opcional)</span> - ID da cultura</li>
+                        </ul>
+                    </div>
+                    <div class="endpoint-response">
+                        <strong>Resposta:</strong> Lista de objetos GrowingInfo contendo dados das temporadas de cultivo
+                    </div>
+                </div>
+            </div>
+
+            <!-- Models -->
+            <div class="section-card animate__animated animate__fadeInUp">
+                <h3>
+                    <i class="bi bi-diagram-3 code-icon"></i>
+                    Data Models
+                </h3>
+                <p>Pydantic models for data validation.</p>
+                <ul class="list-unstyled">
+                    <!-- Crop Models -->
+                    <li class="mb-3">
+                        <strong>
+                            <a class="preview-link"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-html="true"
+                                data-bs-content="<div class='code-preview'>class Crop(BaseModel):
+    name: str
+    temp_min: float
+    temp_max: float
+
+class CropInfo(Crop):
+    crop_id: str</div>">
+                                <i class="bi bi-eye-fill"></i>
+                                Crop Models
+                            </a>
+                            <a href="javascript:void(0)" 
+                               onclick="viewCode('Crop Models', document.querySelector('#modelsModal .code-block code').textContent)"
+                               class="code-link">
+                                <i class="bi bi-code-square"></i>
+                                Ver código completo
+                            </a>
+                        </strong>
+                        <div class="mt-2">
+                            <p>Modelos de dados para validação e serialização:</p>
+                            <ul>
+                                <li><strong>Crop</strong>: Modelo base com campos comuns</li>
+                                <li><strong>CropInfo</strong>: Modelo para retorno de informações completas</li>
+                                <li><strong>CropCreate</strong>: Modelo para criação de novas culturas</li>
+                                <li><strong>CropUpdate</strong>: Modelo para atualização de culturas existentes</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- Supplier Models -->
+                    <li class="mb-3">
+                        <strong>
+                            <a class="preview-link"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-html="true"
+                                data-bs-content="<div class='code-preview'>class Supplier(BaseModel):
+    supplier_name: str  
+    country_code: str
+    country_name: str
+    h3index_num: int
+    crop_id: str
+
+class SupplierInfo(Supplier):
+    poi_id: str</div>">
+                                <i class="bi bi-eye-fill"></i>
+                                Supplier Models
+                            </a>
+                            <a href="javascript:void(0)" 
+                               onclick="viewCode('Supplier Models', document.querySelector('#modelsModal .code-block code').textContent)"
+                               class="code-link">
+                                <i class="bi bi-code-square"></i>
+                                Ver código completo
+                            </a>
+                        </strong>
+                        <div class="mt-2">
+                            <p>Modelos para fornecedores:</p>
+                            <ul>
+                                <li><strong>Supplier</strong>: Modelo base com informações do fornecedor</li>
+                                <li><strong>SupplierInfo</strong>: Modelo completo com ID do ponto de interesse</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- Growing Models -->
+                    <li class="mb-3">
+                        <strong>
+                            <a class="preview-link"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-html="true"
+                                data-bs-content="<div class='code-preview'>class Growing(BaseModel):
+    h3index_num: int
+    crop_id: str
+    season_start_week: int
+    season_end_week: int
+    season_start_date: date
+    season_end_date: date
+    length_of_season_weeks: int
+    length_of_season_days: int
+
+class GrowingInfo(Growing):
+    pass</div>">
+                                <i class="bi bi-eye-fill"></i>
+                                Growing Models
+                            </a>
+                            <a href="javascript:void(0)" 
+                               onclick="viewCode('Growing Models', document.querySelector('#modelsModal .code-block code').textContent)"
+                               class="code-link">
+                                <i class="bi bi-code-square"></i>
+                                Ver código completo
+                            </a>
+                        </strong>
+                        <div class="mt-2">
+                            <p>Modelos para temporadas de cultivo:</p>
+                            <ul>
+                                <li><strong>Growing</strong>: Modelo base com informações da temporada</li>
+                                <li><strong>GrowingInfo</strong>: Modelo para retorno de informações completas</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modals -->
+    <!-- Views Modal -->
+    <div class="modal fade" id="viewsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">View Definitions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="code-block">
+                        <pre><code>-- vw_weight View
+CREATE OR REPLACE VIEW `helios-tech-interview-project.result_test.vw_weight`
+AS
+SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-1  AS pr_year UNION ALL
+SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-2  AS pr_year UNION ALL
+SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-3  AS pr_year UNION ALL
+SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-4  AS pr_year UNION ALL
+SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-5  AS pr_year UNION ALL
+SELECT CAST(.10 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-6  AS pr_year UNION ALL
+SELECT CAST(.08 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-7  AS pr_year UNION ALL
+SELECT CAST(.04 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-8  AS pr_year UNION ALL
+SELECT CAST(.02 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-9  AS pr_year UNION ALL
+SELECT CAST(.01 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-10 AS pr_year</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Functions Modal -->
+    <div class="modal fade" id="functionsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Function Definitions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="code-block">
+                        <pre><code>-- First Day of Week Function
+CREATE OR REPLACE FUNCTION `helios-tech-interview-project.result_test.fc_first_day_week_of_year`(YEAR INT64, WEEK_NUM INT64) 
+RETURNS DATE AS (
+(    
+    WITH 
+    -- Capturing the 7 days prior to the 1st day of the year
+    CTE_DATES AS (
+      SELECT
+        DATE_ADD(DATE(YEAR, 1, 1), INTERVAL -x DAY) AS date_in_range
+      FROM UNNEST(GENERATE_ARRAY(0, 7)) AS x
+      ORDER BY 1
+    )
+    ,CTE_WEEK_NUMBER AS (
+      SELECT 
+        * 
+        ,EXTRACT(ISOWEEK FROM date_in_range) AS week_number
+      FROM CTE_DATES
+    )
+    ,CTE_FIRST_DAY AS (
+      SELECT 
+        MIN(date_in_range) AS first_day_of_week
+      FROM CTE_WEEK_NUMBER 
+      WHERE week_number = 1
+    )
+
+    SELECT 
+      DATE_ADD(
+        (SELECT first_day_of_week FROM CTE_FIRST_DAY),
+        INTERVAL (WEEK_NUM - 1) WEEK
+      ) AS first_day_of_week
+  )
+);</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Procedures Modal -->
+    <div class="modal fade" id="proceduresModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Procedure Definitions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="code-block">
+                        <pre><code>-- API Crop Risk Procedure
+CREATE OR REPLACE PROCEDURE `helios-tech-interview-project.result_test.pr_3_api_crop_risk`(
+    pr_crop_id_or_name STRING, 
+    actual_temp FLOAT64
+)
+BEGIN
+  #### pr_crop_id_or_name: This parameter accepts only string values​ ​and can receive either the crop_id or the name of the crop.
+  #### actual_temp:  Current temperature
+    
+  SELECT DISTINCT
+      crop_id, name, temp_min, temp_max, actual_temp as temperature
+      ,CASE 
+        WHEN actual_temp > temp_min AND actual_temp < temp_max
+        THEN 1 --Inside the Range
+        ELSE 0 --Out of Range
+      END AS risk_status
+      ,CASE 
+        WHEN actual_temp > temp_min AND actual_temp < temp_max
+        THEN 'in season' --Inside the Range
+        ELSE 'out of season' --Out of Range
+      END AS risk_desc
+  FROM `helios-tech-interview-project.shared.crop_info`
+  WHERE crop_id = pr_crop_id_or_name
+  OR name = pr_crop_id_or_name;  
+END;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Endpoints Modal -->
+    <div class="modal fade" id="endpointsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">API Endpoints Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="code-block">
+                        <pre><code>@router.get("/crop-info/", response_model=List[model.CropInfo])
+async def get_crop_info(crop_id: Optional[str] = None, name: Optional[str] = None):
+    """    
+    Get crop information by passing crop id or name. 
+    At least one parameter must be provided.
+    """
+    if not crop_id and not name:
+        raise HTTPException(
+            status_code=400,
+            detail="Either crop_id or name must be provided"
+        )
+
+    query = "SELECT * FROM `helios-tech-interview-project.shared.crop_info`"
+    
+    if crop_id:
+        query += f" WHERE crop_id = '{crop_id}'"        
+    if name:
+        query += f" WHERE name = '{name}'"        
+
+    return bq.exec_query_bq(query)
+
+@router.post("/crop-insert/", response_model=dict)
+async def create_crop(crop: model.CropCreate):
+    """
+    Create a new crop
+    """
+    query = f"""INSERT INTO `helios-tech-interview-project.shared.crop_info` 
+                (crop_id, name, temp_min, temp_max) 
+                VALUES (
+                    GENERATE_UUID()
+                    ,'{crop.name}'
+                    ,{crop.temp_min}
+                    ,{crop.temp_max}
+                )"""
+
+    return bq.exec_dml_query_bq(query)
+
+@router.get("/crop-risk-temp/", response_model=List[model.CropInfo])
+async def get_crop_risk(temperature: float, crop_id: Optional[str] = None, name: Optional[str] = None):
+    """    
+    Get information about the crop risk by entering the temperature and either crop_id or name.
+    """
+    if not crop_id and not name:
+        raise HTTPException(
+            status_code=400,
+            detail="Either crop_id or name must be provided"
+        )
+
+    search_value = crop_id if crop_id else name
+    query = f"CALL `helios-tech-interview-project.result_test.pr_3_api_crop_risk`('{search_value}', {temperature});"
+    
+    return bq.exec_query_bq(query)</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Models Modal -->
+    <div class="modal fade" id="modelsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Data Models</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="code-block">
+                        <pre><code>class Crop(BaseModel):
+    name: str
+    temp_min: float
+    temp_max: float
+
+class CropInfo(Crop):
+    crop_id: str    
+    pass
+
+class CropCreate(Crop):
+    pass
+
+class CropUpdate(Crop):
+    crop_id: str
+    pass</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Modal -->
+    <div class="modal fade" id="codeModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <pre><code class="language-sql"></code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize highlight.js
+            hljs.highlightAll();
+
+            // Initialize all popovers
+            const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+            
+            popoverTriggerList.forEach(function(popoverTriggerEl) {
+                const content = popoverTriggerEl.getAttribute('data-bs-content');
+                const title = popoverTriggerEl.textContent.trim();
+                
+                new bootstrap.Popover(popoverTriggerEl, {
+                    trigger: 'hover',
+                    html: true,
+                    placement: 'right',
+                    content: content,
+                    delay: { show: 100, hide: 100 },
+                    container: 'body',
+                    animation: true,
+                    sanitize: false
+                });
+            });
+        });
+
+        function copyCode(button) {
+            const codeElement = button.closest('.preview-container').querySelector('code');
+            const code = codeElement.textContent;
+            navigator.clipboard.writeText(code);
+            
+            const icon = button.querySelector('i');
+            icon.classList.remove('bi-clipboard');
+            icon.classList.add('bi-clipboard-check');
+            
+            setTimeout(() => {
+                icon.classList.remove('bi-clipboard-check');
+                icon.classList.add('bi-clipboard');
+            }, 2000);
+        }
+
+        function viewCode(title, code, type) {
+            const modal = document.getElementById('codeModal');
+            const modalTitle = modal.querySelector('.modal-title');
+            const modalBody = modal.querySelector('.modal-body pre code');
+            
+            modalTitle.textContent = title;
+            
+            if (type === 'supplier') {
+                modalBody.textContent = code.split('@router.get(\'/supplier/\')')[1];
+            } else if (type === 'growing') {
+                modalBody.textContent = code.split('@router.get(\'/growing-info/\')')[1];
+            } else {
+                modalBody.textContent = code;
+            }
+            
+            hljs.highlightElement(modalBody);
+            const bsModal = new bootstrap.Modal(modal);
+            bsModal.show();
+        }
+
+        // Close popover when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('[data-bs-toggle="popover"]')) {
+                document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(popover) {
+                    const instance = bootstrap.Popover.getInstance(popover);
+                    if (instance) {
+                        instance.hide();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
