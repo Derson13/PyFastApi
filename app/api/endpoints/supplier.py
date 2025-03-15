@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from typing import Optional, List
 from app.models.supplier import SupplierInfo
-from app.services.bigquery_service import execute_query
+import app.services.bigquery_service as bq
 
 router = APIRouter()
 
@@ -24,4 +24,4 @@ async def get_supplier_info(poi_id: Optional[str] = None, supplier_name: Optiona
     if supplier_name:
         query += f" WHERE supplier_name = '{supplier_name}'"
 
-    return execute_query(query) 
+    return bq.exec_query_bq(query) 
