@@ -361,10 +361,10 @@ SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-2  A
                                onclick="viewCode('vw_weight View', document.querySelector('#viewsModal .code-block code').textContent)"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
-                                Ver código completo
+                                View Full Code
                             </a>
                         </strong>
-                        <p class="mt-2">Calcula os pesos históricos para análise temporal, com pesos decrescentes para anos mais antigos.</p>
+                        <p class="mt-2">Calculates historical weights for temporal analysis, with decreasing weights for older years.</p>
                     </li>
                 </ul>
             </div>
@@ -401,16 +401,16 @@ RETURNS DATE AS (
                                onclick="viewCode('First Day of Week Function', document.querySelector('#functionsModal .code-block code').textContent)"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
-                                Ver código completo
+                                View Full Code
                             </a>
                         </strong>
-                        <p class="mt-2">Calcula o primeiro dia da semana para um determinado ano e número da semana.</p>
-                        <strong>Parâmetros:</strong>
+                        <p class="mt-2">Calculates the first day of the week for a given year and week number.</p>
+                        <strong>Parameters:</strong>
                         <ul>
-                            <li><span class="param-name">YEAR</span> <span class="param-type">(INT64)</span> - Ano</li>
-                            <li><span class="param-name">WEEK_NUM</span> <span class="param-type">(INT64)</span> - Número da semana</li>
+                            <li><span class="param-name">YEAR</span> <span class="param-type">(INT64)</span> - Year</li>
+                            <li><span class="param-name">WEEK_NUM</span> <span class="param-type">(INT64)</span> - Week number</li>
                         </ul>
-                        <strong>Retorno:</strong> DATE - Primeiro dia da semana especificada
+                        <strong>Return:</strong> DATE - First day of the specified week
                     </li>
 
                     <li class="mb-3">
@@ -435,16 +435,16 @@ RETURNS DATE AS (
                                onclick="viewCode('fc_end_day_week_of_year Function', document.querySelector('#functionsModal .code-block code').textContent)"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
-                                Ver código completo
+                                View Full Code
                             </a>
                         </strong>
-                        <p class="mt-2">Calcula o último dia da semana para um determinado ano e número da semana.</p>
-                        <strong>Parâmetros:</strong>
+                        <p class="mt-2">Calculates the last day of the week for a given year and week number.</p>
+                        <strong>Parameters:</strong>
                         <ul>
-                            <li><span class="param-name">YEAR</span> <span class="param-type">(INT64)</span> - Ano</li>
-                            <li><span class="param-name">WEEK_NUM</span> <span class="param-type">(INT64)</span> - Número da semana</li>
+                            <li><span class="param-name">YEAR</span> <span class="param-type">(INT64)</span> - Year</li>
+                            <li><span class="param-name">WEEK_NUM</span> <span class="param-type">(INT64)</span> - Week number</li>
                         </ul>
-                        <strong>Retorno:</strong> DATE - Último dia da semana especificada
+                        <strong>Return:</strong> DATE - Last day of the specified week
                     </li>
                 </ul>
             </div>
@@ -499,14 +499,14 @@ END;</div>">
                                onclick="viewCode('pr_1_calculate_growing Procedure', document.querySelector('#proceduresModal .code-block code').textContent)"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
-                                Ver código completo
+                                View Full Code
                             </a>
                         </strong>
-                        <p class="mt-2">Procedimento que calcula as temporadas de cultivo para uma cultura em uma localização específica.</p>
-                        <strong>Parâmetros:</strong>
+                        <p class="mt-2">Procedure that calculates growing seasons for a crop in a specific location.</p>
+                        <strong>Parameters:</strong>
                         <ul>
-                            <li><span class="param-name">pr_h3_index</span> <span class="param-type">(INT64)</span> - Índice H3 da localização</li>
-                            <li><span class="param-name">pr_crop_id_or_name</span> <span class="param-type">(STRING)</span> - ID ou nome da cultura</li>
+                            <li><span class="param-name">pr_h3_index</span> <span class="param-type">(INT64)</span> - H3 location index</li>
+                            <li><span class="param-name">pr_crop_id_or_name</span> <span class="param-type">(STRING)</span> - Crop ID or name</li>
                         </ul>
                     </li>
 
@@ -551,14 +551,14 @@ END;</div>">
                                onclick="viewCode('pr_2_daily_risk Procedure', document.querySelector('#proceduresModal .code-block code').textContent)"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
-                                Ver código completo
+                                View Full Code
                             </a>
                         </strong>
-                        <p class="mt-2">Procedimento que calcula o risco diário para uma cultura em uma localização específica.</p>
-                        <strong>Parâmetros:</strong>
+                        <p class="mt-2">Procedure that calculates daily risk for a crop in a specific location.</p>
+                        <strong>Parameters:</strong>
                         <ul>
-                            <li><span class="param-name">pr_h3_index</span> <span class="param-type">(INT64)</span> - Índice H3 da localização</li>
-                            <li><span class="param-name">pr_crop_id_or_name</span> <span class="param-type">(STRING)</span> - ID ou nome da cultura</li>
+                            <li><span class="param-name">pr_h3_index</span> <span class="param-type">(INT64)</span> - H3 location index</li>
+                            <li><span class="param-name">pr_crop_id_or_name</span> <span class="param-type">(STRING)</span> - Crop ID or name</li>
                         </ul>
                     </li>
 
@@ -599,14 +599,14 @@ END;</div>">
                                onclick="viewCode('API Crop Risk Procedure', document.querySelector('#proceduresModal .code-block code').textContent)"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
-                                Ver código completo
+                                View Full Code
                             </a>
                         </strong>
-                        <p class="mt-2">Procedimento que avalia o risco para uma cultura com base na temperatura atual.</p>
-                        <strong>Parâmetros:</strong>
+                        <p class="mt-2">Procedure that evaluates risk for a crop based on current temperature.</p>
+                        <strong>Parameters:</strong>
                         <ul>
-                            <li><span class="param-name">pr_crop_id_or_name</span> <span class="param-type">(STRING)</span> - ID ou nome da cultura</li>
-                            <li><span class="param-name">actual_temp</span> <span class="param-type">(FLOAT64)</span> - Temperatura atual</li>
+                            <li><span class="param-name">pr_crop_id_or_name</span> <span class="param-type">(STRING)</span> - Crop ID or name</li>
+                            <li><span class="param-name">actual_temp</span> <span class="param-type">(FLOAT64)</span> - Current temperature</li>
                         </ul>
                     </li>
                 </ul>
@@ -635,9 +635,9 @@ END;</div>">
 async def get_crop_info(crop_id: Optional[str] = None, name: Optional[str] = None):
     query = 'SELECT * FROM `helios-tech-interview-project.shared.crop_info`'
     if crop_id:
-        query += f&quot; WHERE crop_id = '{crop_id}'&quot;
+        query += f" WHERE crop_id = '{crop_id}'"
     if name:
-        query += f&quot; WHERE name = '{name}'&quot;
+        query += f" WHERE name = '{name}'"
     return bq.exec_query_bq(query)</div>">
                                 <i class="bi bi-eye-fill"></i>
                                 /crop-info/
@@ -646,22 +646,22 @@ async def get_crop_info(crop_id: Optional[str] = None, name: Optional[str] = Non
                                onclick="viewCode('GET /crop-info/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent.split('@router.post')[0])"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
-                                Ver código completo
+                                View Full Code
                             </a>
                         </code>
                     </div>
                     <div class="endpoint-description">
-                        Obtém informações sobre uma cultura específica por ID ou nome.
+                        Get information about a specific crop by ID or name.
                     </div>
                     <div class="endpoint-params">
-                        <strong>Parâmetros:</strong>
+                        <strong>Parameters:</strong>
                         <ul>
-                            <li><span class="param-name">crop_id</span> <span class="param-type">(string, opcional)</span> - ID único da cultura</li>
-                            <li><span class="param-name">name</span> <span class="param-type">(string, opcional)</span> - Nome da cultura</li>
+                            <li><span class="param-name">crop_id</span> <span class="param-type">(string, optional)</span> - Unique crop ID</li>
+                            <li><span class="param-name">name</span> <span class="param-type">(string, optional)</span> - Crop name</li>
                         </ul>
                     </div>
                     <div class="endpoint-response">
-                        <strong>Resposta:</strong> Lista de objetos CropInfo contendo dados da cultura
+                        <strong>Response:</strong> List of CropInfo objects containing crop data
                     </div>
                 </div>
 
@@ -676,10 +676,9 @@ async def get_crop_info(crop_id: Optional[str] = None, name: Optional[str] = Non
                                 data-bs-html="true"
                                 data-bs-content="<div class='code-preview'>@router.post('/crop-insert/', response_model=dict)
 async def create_crop(crop: model.CropCreate):
-    query = f&quot;INSERT INTO `helios-tech-interview-project.shared.crop_info`
+    query = f"INSERT INTO `helios-tech-interview-project.shared.crop_info`
             (crop_id, name, temp_min, temp_max)
-            VALUES (GENERATE_UUID(), '{crop.name}', {crop.temp_min}, {crop.temp_max})&quot;
-    return bq.exec_dml_query_bq(query)</div>">
+            VALUES (GENERATE_UUID(), '{crop.name}', {crop.temp_min}, {crop.temp_max})"</div>">
                                 <i class="bi bi-eye-fill"></i>
                                 /crop-insert/
                             </a>
@@ -687,23 +686,23 @@ async def create_crop(crop: model.CropCreate):
                                onclick="viewCode('POST /crop-insert/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent.split('@router.post')[1].split('@router.get')[0])"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
-                                Ver código completo
+                                View Full Code
                             </a>
                         </code>
                     </div>
                     <div class="endpoint-description">
-                        Cria uma nova cultura com suas características de temperatura.
+                        Creates a new crop with its temperature characteristics.
                     </div>
                     <div class="endpoint-params">
                         <strong>Body:</strong>
                         <ul>
-                            <li><span class="param-name">name</span> <span class="param-type">(string, obrigatório)</span> - Nome da cultura</li>
-                            <li><span class="param-name">temp_min</span> <span class="param-type">(float, obrigatório)</span> - Temperatura mínima ideal</li>
-                            <li><span class="param-name">temp_max</span> <span class="param-type">(float, obrigatório)</span> - Temperatura máxima ideal</li>
+                            <li><span class="param-name">name</span> <span class="param-type">(string, required)</span> - Crop name</li>
+                            <li><span class="param-name">temp_min</span> <span class="param-type">(float, required)</span> - Ideal minimum temperature</li>
+                            <li><span class="param-name">temp_max</span> <span class="param-type">(float, required)</span> - Ideal maximum temperature</li>
                         </ul>
                     </div>
                     <div class="endpoint-response">
-                        <strong>Resposta:</strong> Confirmação da inserção com status
+                        <strong>Response:</strong> Insertion confirmation with status
                     </div>
                 </div>
 
@@ -719,9 +718,7 @@ async def create_crop(crop: model.CropCreate):
                                 data-bs-content="<div class='code-preview'>@router.get('/crop-risk-temp/', response_model=List[model.CropInfo])
 async def get_crop_risk(temperature: float, crop_id: Optional[str] = None, name: Optional[str] = None):
     search_value = crop_id if crop_id else name
-    query = f&quot;CALL `helios-tech-interview-project.result_test.pr_3_api_crop_risk`(
-        '{search_value}', {temperature});&quot;
-    return bq.exec_query_bq(query)</div>">
+    query = f"CALL `helios-tech-interview-project.result_test.pr_3_api_crop_risk`('{search_value}', {temperature});"</div>">
                                 <i class="bi bi-eye-fill"></i>
                                 /crop-risk-temp/
                             </a>
@@ -729,23 +726,23 @@ async def get_crop_risk(temperature: float, crop_id: Optional[str] = None, name:
                                onclick="viewCode('GET /crop-risk-temp/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent.split('@router.get(\'/crop-risk-temp/\')')[1])"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
-                                Ver código completo
+                                View Full Code
                             </a>
                         </code>
                     </div>
                     <div class="endpoint-description">
-                        Avalia o risco de uma cultura com base na temperatura atual.
+                        Evaluates crop risk based on current temperature.
                     </div>
                     <div class="endpoint-params">
-                        <strong>Parâmetros:</strong>
+                        <strong>Parameters:</strong>
                         <ul>
-                            <li><span class="param-name">temperature</span> <span class="param-type">(float, obrigatório)</span> - Temperatura atual</li>
-                            <li><span class="param-name">crop_id</span> <span class="param-type">(string, opcional)</span> - ID da cultura</li>
-                            <li><span class="param-name">name</span> <span class="param-type">(string, opcional)</span> - Nome da cultura</li>
+                            <li><span class="param-name">temperature</span> <span class="param-type">(float, required)</span> - Current temperature</li>
+                            <li><span class="param-name">crop_id</span> <span class="param-type">(string, optional)</span> - Crop ID</li>
+                            <li><span class="param-name">name</span> <span class="param-type">(string, optional)</span> - Crop name</li>
                         </ul>
                     </div>
                     <div class="endpoint-response">
-                        <strong>Resposta:</strong> Informações da cultura com status de risco
+                        <strong>Response:</strong> Crop information with risk status
                     </div>
                 </div>
 
@@ -762,9 +759,9 @@ async def get_crop_risk(temperature: float, crop_id: Optional[str] = None, name:
 async def get_supplier_info(poi_id: Optional[str] = None, supplier_name: Optional[str] = None):
     query = 'SELECT * FROM `helios-tech-interview-project.shared.places_of_interest`'
     if poi_id:
-        query += f&quot; WHERE poi_id = '{poi_id}'&quot;
+        query += f" WHERE poi_id = '{poi_id}'"
     if supplier_name:
-        query += f&quot; WHERE supplier_name = '{supplier_name}'&quot;
+        query += f" WHERE supplier_name = '{supplier_name}'"
     return bq.exec_query_bq(query)</div>">
                                 <i class="bi bi-eye-fill"></i>
                                 /supplier/
@@ -773,22 +770,22 @@ async def get_supplier_info(poi_id: Optional[str] = None, supplier_name: Optiona
                                onclick="viewCode('GET /supplier/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent, 'supplier')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
-                                Ver código completo
+                                View Full Code
                             </a>
                         </code>
                     </div>
                     <div class="endpoint-description">
-                        Obtém informações sobre fornecedores por ID ou nome.
+                        Get supplier information by ID or name.
                     </div>
                     <div class="endpoint-params">
-                        <strong>Parâmetros:</strong>
+                        <strong>Parameters:</strong>
                         <ul>
-                            <li><span class="param-name">poi_id</span> <span class="param-type">(string, opcional)</span> - ID do ponto de interesse</li>
-                            <li><span class="param-name">supplier_name</span> <span class="param-type">(string, opcional)</span> - Nome do fornecedor</li>
+                            <li><span class="param-name">poi_id</span> <span class="param-type">(string, optional)</span> - Point of interest ID</li>
+                            <li><span class="param-name">supplier_name</span> <span class="param-type">(string, optional)</span> - Supplier name</li>
                         </ul>
                     </div>
                     <div class="endpoint-response">
-                        <strong>Resposta:</strong> Lista de objetos SupplierInfo contendo dados do fornecedor
+                        <strong>Response:</strong> List of SupplierInfo objects containing supplier data
                     </div>
                 </div>
 
@@ -805,9 +802,9 @@ async def get_supplier_info(poi_id: Optional[str] = None, supplier_name: Optiona
 async def get_growing_info(h3index_num: Optional[int] = None, crop_id: Optional[str] = None):
     query = 'SELECT * FROM `helios-tech-interview-project.result_test.tb_1_growing_seasons` WHERE 1=1'
     if h3index_num:
-        query += f&quot; AND h3index_num = {h3index_num}&quot;
+        query += f" AND h3index_num = {h3index_num}"
     if crop_id:
-        query += f&quot; AND crop_id = '{crop_id}'&quot;
+        query += f" AND crop_id = '{crop_id}'"
     return bq.exec_query_bq(query)</div>">
                                 <i class="bi bi-eye-fill"></i>
                                 /growing-info/
@@ -816,22 +813,22 @@ async def get_growing_info(h3index_num: Optional[int] = None, crop_id: Optional[
                                onclick="viewCode('GET /growing-info/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent)"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
-                                Ver código completo
+                                View Full Code
                             </a>
                         </code>
                     </div>
                     <div class="endpoint-description">
-                        Obtém informações sobre temporadas de cultivo por índice H3 ou ID da cultura.
+                        Get growing season information by H3 index or crop ID.
                     </div>
                     <div class="endpoint-params">
-                        <strong>Parâmetros:</strong>
+                        <strong>Parameters:</strong>
                         <ul>
-                            <li><span class="param-name">h3index_num</span> <span class="param-type">(integer, opcional)</span> - Índice H3 da localização</li>
-                            <li><span class="param-name">crop_id</span> <span class="param-type">(string, opcional)</span> - ID da cultura</li>
+                            <li><span class="param-name">h3index_num</span> <span class="param-type">(integer, optional)</span> - H3 location index</li>
+                            <li><span class="param-name">crop_id</span> <span class="param-type">(string, optional)</span> - Crop ID</li>
                         </ul>
                     </div>
                     <div class="endpoint-response">
-                        <strong>Resposta:</strong> Lista de objetos GrowingInfo contendo dados das temporadas de cultivo
+                        <strong>Response:</strong> List of GrowingInfo objects containing growing season data
                     </div>
                 </div>
             </div>
@@ -865,16 +862,16 @@ class CropInfo(Crop):
                                onclick="viewCode('Crop Models', document.querySelector('#modelsModal .code-block code').textContent)"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
-                                Ver código completo
+                                View Full Code
                             </a>
                         </strong>
                         <div class="mt-2">
-                            <p>Modelos de dados para validação e serialização:</p>
+                            <p>Data models for validation and serialization:</p>
                             <ul>
-                                <li><strong>Crop</strong>: Modelo base com campos comuns</li>
-                                <li><strong>CropInfo</strong>: Modelo para retorno de informações completas</li>
-                                <li><strong>CropCreate</strong>: Modelo para criação de novas culturas</li>
-                                <li><strong>CropUpdate</strong>: Modelo para atualização de culturas existentes</li>
+                                <li><strong>Crop</strong>: Base model with common fields</li>
+                                <li><strong>CropInfo</strong>: Model for returning complete information</li>
+                                <li><strong>CropCreate</strong>: Model for creating new crops</li>
+                                <li><strong>CropUpdate</strong>: Model for updating existing crops</li>
                             </ul>
                         </div>
                     </li>
@@ -902,14 +899,14 @@ class SupplierInfo(Supplier):
                                onclick="viewCode('Supplier Models', document.querySelector('#modelsModal .code-block code').textContent)"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
-                                Ver código completo
+                                View Full Code
                             </a>
                         </strong>
                         <div class="mt-2">
-                            <p>Modelos para fornecedores:</p>
+                            <p>Models for suppliers:</p>
                             <ul>
-                                <li><strong>Supplier</strong>: Modelo base com informações do fornecedor</li>
-                                <li><strong>SupplierInfo</strong>: Modelo completo com ID do ponto de interesse</li>
+                                <li><strong>Supplier</strong>: Base model with supplier information</li>
+                                <li><strong>SupplierInfo</strong>: Complete model with point of interest ID</li>
                             </ul>
                         </div>
                     </li>
@@ -940,14 +937,14 @@ class GrowingInfo(Growing):
                                onclick="viewCode('Growing Models', document.querySelector('#modelsModal .code-block code').textContent)"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
-                                Ver código completo
+                                View Full Code
                             </a>
                         </strong>
                         <div class="mt-2">
-                            <p>Modelos para temporadas de cultivo:</p>
+                            <p>Models for growing seasons:</p>
                             <ul>
-                                <li><strong>Growing</strong>: Modelo base com informações da temporada</li>
-                                <li><strong>GrowingInfo</strong>: Modelo para retorno de informações completas</li>
+                                <li><strong>Growing</strong>: Base model with season information</li>
+                                <li><strong>GrowingInfo</strong>: Model for returning complete information</li>
                             </ul>
                         </div>
                     </li>
