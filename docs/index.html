@@ -198,6 +198,15 @@
             color: #64748b;
         }
 
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
         .code-preview {
             background-color: #1e1e1e;
             color: #d4d4d4;
@@ -228,87 +237,6 @@
 
         .code-preview::-webkit-scrollbar-thumb:hover {
             background: #555;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-color);
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--primary-color);
-        }
-
-        .popover {
-            max-width: 800px;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            background: #2d2d2d;
-        }
-
-        .popover-body {
-            padding: 0;
-            background: #2d2d2d;
-            border-radius: 0.5rem;
-            overflow: hidden;
-        }
-
-        .preview-container {
-            background: linear-gradient(45deg, #2d2d2d, #1a1a1a);
-            border-radius: 0.5rem;
-            overflow: hidden;
-        }
-
-        .preview-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .preview-header span {
-            color: #fff;
-            font-weight: 500;
-        }
-
-        .preview-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .preview-actions button {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.875rem;
-            color: #fff;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 0.25rem;
-            transition: all 0.2s;
-        }
-
-        .preview-actions button:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .code-preview {
-            padding: 1rem;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .code-preview::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .code-preview::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .code-preview::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
         }
 
         .code-preview pre {
@@ -344,21 +272,12 @@
                 <ul class="list-unstyled">
                     <li class="mb-3">
                         <strong>
-                            <a class="preview-link" 
-                                data-bs-toggle="popover" 
-                                data-bs-trigger="hover"
-                                data-bs-html="true"
-                                data-bs-content="<div class='code-preview'>CREATE OR REPLACE VIEW `helios-tech-interview-project.result_test.vw_weight`
-AS
-SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-1  AS pr_year 
-UNION ALL
-SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-2  AS pr_year 
-/* ... more UNION ALLs ... */</div>">
+                            <a class="preview-link">
                                 <i class="bi bi-eye-fill"></i>
                                 vw_weight
                             </a>
                             <a href="javascript:void(0)" 
-                               onclick="viewCode('vw_weight View', document.querySelector('#viewsModal .code-block code').textContent)"
+                               onclick="viewCode('vw_weight')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
                                 View Full Code
@@ -379,26 +298,12 @@ SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-2  A
                 <ul class="list-unstyled">
                     <li class="mb-3">
                         <strong>
-                            <a class="preview-link"
-                                data-bs-toggle="popover"
-                                data-bs-trigger="hover"
-                                data-bs-html="true"
-                                data-bs-content="<div class='code-preview'>CREATE OR REPLACE FUNCTION `helios-tech-interview-project.result_test.fc_first_day_week_of_year`(
-    YEAR INT64, 
-    WEEK_NUM INT64
-) 
-RETURNS DATE AS (
-    WITH CTE_DATES AS (
-        SELECT DATE_ADD(DATE(YEAR, 1, 1), INTERVAL -x DAY) AS date_in_range
-        FROM UNNEST(GENERATE_ARRAY(0, 7)) AS x
-    )
-    /* ... more CTEs and logic ... */
-)</div>">
+                            <a class="preview-link">
                                 <i class="bi bi-eye-fill"></i>
                                 fc_first_day_week_of_year
                             </a>
                             <a href="javascript:void(0)" 
-                               onclick="viewCode('First Day of Week Function', document.querySelector('#functionsModal .code-block code').textContent)"
+                               onclick="viewCode('fc_first_day_week_of_year')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
                                 View Full Code
@@ -415,24 +320,12 @@ RETURNS DATE AS (
 
                     <li class="mb-3">
                         <strong>
-                            <a class="preview-link"
-                                data-bs-toggle="popover"
-                                data-bs-trigger="hover"
-                                data-bs-html="true"
-                                data-bs-content="<div class='code-preview'>CREATE OR REPLACE FUNCTION `helios-tech-interview-project.result_test.fc_end_day_week_of_year`(YEAR INT64, WEEK_NUM INT64) RETURNS DATE AS (
-  DATE_ADD(
-    DATE_ADD(
-      DATE(YEAR, 1, 1),
-      INTERVAL (WEEK_NUM - 1) WEEK
-    ),
-    INTERVAL 6 DAY
-  )
-);</div>">
+                            <a class="preview-link">
                                 <i class="bi bi-eye-fill"></i>
                                 fc_end_day_week_of_year
                             </a>
                             <a href="javascript:void(0)" 
-                               onclick="viewCode('fc_end_day_week_of_year Function', document.querySelector('#functionsModal .code-block code').textContent)"
+                               onclick="viewCode('fc_end_day_week_of_year')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
                                 View Full Code
@@ -459,44 +352,12 @@ RETURNS DATE AS (
                 <ul class="list-unstyled">
                     <li class="mb-3">
                         <strong>
-                            <a class="preview-link"
-                                data-bs-toggle="popover"
-                                data-bs-trigger="hover"
-                                data-bs-html="true"
-                                data-bs-content="<div class='code-preview'>CREATE OR REPLACE PROCEDURE `helios-tech-interview-project.result_test.pr_1_calculate_growing`(pr_h3_index INT64, pr_crop_id_or_name STRING)
-BEGIN
-  -- Calcula as temporadas de cultivo para uma cultura em uma localização específica
-  -- Utiliza dados de temperatura e requisitos da cultura para determinar períodos adequados
-  DECLARE v_crop_id STRING;
-  DECLARE v_min_temp FLOAT64;
-  DECLARE v_max_temp FLOAT64;
-  
-  -- Obtém informações da cultura
-  SELECT crop_id, min_temp, max_temp
-  INTO v_crop_id, v_min_temp, v_max_temp
-  FROM `helios-tech-interview-project.shared.crops`
-  WHERE crop_id = pr_crop_id_or_name OR crop_name = pr_crop_id_or_name;
-  
-  -- Calcula e insere as temporadas de cultivo
-  INSERT INTO `helios-tech-interview-project.result_test.tb_1_growing_seasons`
-  SELECT 
-    pr_h3_index as h3index_num,
-    v_crop_id as crop_id,
-    EXTRACT(WEEK FROM date) as season_start_week,
-    EXTRACT(WEEK FROM date) as season_end_week,
-    date as season_start_date,
-    date as season_end_date,
-    1 as length_of_season_weeks,
-    7 as length_of_season_days
-  FROM `helios-tech-interview-project.shared.temperature`
-  WHERE h3index_num = pr_h3_index
-    AND avg_temp BETWEEN v_min_temp AND v_max_temp;
-END;</div>">
+                            <a class="preview-link">
                                 <i class="bi bi-eye-fill"></i>
                                 pr_1_calculate_growing
                             </a>
                             <a href="javascript:void(0)" 
-                               onclick="viewCode('pr_1_calculate_growing Procedure', document.querySelector('#proceduresModal .code-block code').textContent)"
+                               onclick="viewCode('pr_1_calculate_growing')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
                                 View Full Code
@@ -512,43 +373,12 @@ END;</div>">
 
                     <li class="mb-3">
                         <strong>
-                            <a class="preview-link"
-                                data-bs-toggle="popover"
-                                data-bs-trigger="hover"
-                                data-bs-html="true"
-                                data-bs-content="<div class='code-preview'>CREATE OR REPLACE PROCEDURE `helios-tech-interview-project.result_test.pr_2_daily_risk`(pr_h3_index INT64, pr_crop_id_or_name STRING)
-BEGIN
-  -- Calcula o risco diário para uma cultura em uma localização específica
-  -- Baseado nas temperaturas e limites da cultura
-  DECLARE v_crop_id STRING;
-  DECLARE v_min_temp FLOAT64;
-  DECLARE v_max_temp FLOAT64;
-  
-  -- Obtém informações da cultura
-  SELECT crop_id, min_temp, max_temp
-  INTO v_crop_id, v_min_temp, v_max_temp
-  FROM `helios-tech-interview-project.shared.crops`
-  WHERE crop_id = pr_crop_id_or_name OR crop_name = pr_crop_id_or_name;
-  
-  -- Calcula e insere os riscos diários
-  INSERT INTO `helios-tech-interview-project.result_test.tb_2_daily_risk`
-  SELECT 
-    pr_h3_index as h3index_num,
-    v_crop_id as crop_id,
-    date,
-    CASE
-      WHEN avg_temp < v_min_temp THEN 'COLD'
-      WHEN avg_temp > v_max_temp THEN 'HOT'
-      ELSE 'NORMAL'
-    END as risk_type
-  FROM `helios-tech-interview-project.shared.temperature`
-  WHERE h3index_num = pr_h3_index;
-END;</div>">
+                            <a class="preview-link">
                                 <i class="bi bi-eye-fill"></i>
                                 pr_2_daily_risk
                             </a>
                             <a href="javascript:void(0)" 
-                               onclick="viewCode('pr_2_daily_risk Procedure', document.querySelector('#proceduresModal .code-block code').textContent)"
+                               onclick="viewCode('pr_2_daily_risk')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
                                 View Full Code
@@ -564,39 +394,12 @@ END;</div>">
 
                     <li class="mb-3">
                         <strong>
-                            <a class="preview-link"
-                                data-bs-toggle="popover"
-                                data-bs-trigger="hover"
-                                data-bs-html="true"
-                                data-bs-content="<div class='code-preview'>CREATE OR REPLACE PROCEDURE `helios-tech-interview-project.result_test.pr_3_api_crop_risk`(pr_crop_id_or_name STRING, actual_temp FLOAT64)
-BEGIN
-  -- Avalia o risco para uma cultura com base na temperatura atual
-  DECLARE v_crop_id STRING;
-  DECLARE v_min_temp FLOAT64;
-  DECLARE v_max_temp FLOAT64;
-  
-  -- Obtém informações da cultura
-  SELECT crop_id, min_temp, max_temp
-  INTO v_crop_id, v_min_temp, v_max_temp
-  FROM `helios-tech-interview-project.shared.crops`
-  WHERE crop_id = pr_crop_id_or_name OR crop_name = pr_crop_id_or_name;
-  
-  -- Insere o resultado da avaliação
-  INSERT INTO `helios-tech-interview-project.result_test.tb_3_api_crop_risk`
-  SELECT 
-    v_crop_id as crop_id,
-    actual_temp as temperature,
-    CASE
-      WHEN actual_temp < v_min_temp THEN 'COLD'
-      WHEN actual_temp > v_max_temp THEN 'HOT'
-      ELSE 'NORMAL'
-    END as risk_type;
-END;</div>">
+                            <a class="preview-link">
                                 <i class="bi bi-eye-fill"></i>
                                 pr_3_api_crop_risk
                             </a>
                             <a href="javascript:void(0)" 
-                               onclick="viewCode('API Crop Risk Procedure', document.querySelector('#proceduresModal .code-block code').textContent)"
+                               onclick="viewCode('pr_3_api_crop_risk')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
                                 View Full Code
@@ -627,23 +430,12 @@ END;</div>">
                     <div class="d-flex align-items-center gap-3">
                         <span class="method-badge get">GET</span>
                         <code>
-                            <a class="preview-link"
-                                data-bs-toggle="popover"
-                                data-bs-trigger="hover"
-                                data-bs-html="true"
-                                data-bs-content="<div class='code-preview'>@router.get('/crop-info/', response_model=List[model.CropInfo])
-async def get_crop_info(crop_id: Optional[str] = None, name: Optional[str] = None):
-    query = 'SELECT * FROM `helios-tech-interview-project.shared.crop_info`'
-    if crop_id:
-        query += f" WHERE crop_id = '{crop_id}'"
-    if name:
-        query += f" WHERE name = '{name}'"
-    return bq.exec_query_bq(query)</div>">
+                            <a class="preview-link">
                                 <i class="bi bi-eye-fill"></i>
                                 /crop-info/
                             </a>
                             <a href="javascript:void(0)" 
-                               onclick="viewCode('GET /crop-info/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent.split('@router.post')[0])"
+                               onclick="viewCode('crop-info')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
                                 View Full Code
@@ -670,20 +462,12 @@ async def get_crop_info(crop_id: Optional[str] = None, name: Optional[str] = Non
                     <div class="d-flex align-items-center gap-3">
                         <span class="method-badge post">POST</span>
                         <code>
-                            <a class="preview-link"
-                                data-bs-toggle="popover"
-                                data-bs-trigger="hover"
-                                data-bs-html="true"
-                                data-bs-content="<div class='code-preview'>@router.post('/crop-insert/', response_model=dict)
-async def create_crop(crop: model.CropCreate):
-    query = f"INSERT INTO `helios-tech-interview-project.shared.crop_info`
-            (crop_id, name, temp_min, temp_max)
-            VALUES (GENERATE_UUID(), '{crop.name}', {crop.temp_min}, {crop.temp_max})"</div>">
+                            <a class="preview-link">
                                 <i class="bi bi-eye-fill"></i>
                                 /crop-insert/
                             </a>
                             <a href="javascript:void(0)" 
-                               onclick="viewCode('POST /crop-insert/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent.split('@router.post')[1].split('@router.get')[0])"
+                               onclick="viewCode('crop-insert')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
                                 View Full Code
@@ -714,16 +498,12 @@ async def create_crop(crop: model.CropCreate):
                             <a class="preview-link"
                                 data-bs-toggle="popover"
                                 data-bs-trigger="hover"
-                                data-bs-html="true"
-                                data-bs-content="<div class='code-preview'>@router.get('/crop-risk-temp/', response_model=List[model.CropInfo])
-async def get_crop_risk(temperature: float, crop_id: Optional[str] = None, name: Optional[str] = None):
-    search_value = crop_id if crop_id else name
-    query = f"CALL `helios-tech-interview-project.result_test.pr_3_api_crop_risk`('{search_value}', {temperature});"</div>">
+                                data-bs-html="true">
                                 <i class="bi bi-eye-fill"></i>
                                 /crop-risk-temp/
                             </a>
                             <a href="javascript:void(0)" 
-                               onclick="viewCode('GET /crop-risk-temp/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent.split('@router.get(\'/crop-risk-temp/\')')[1])"
+                               onclick="viewCode('crop-risk-temp')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
                                 View Full Code
@@ -754,20 +534,12 @@ async def get_crop_risk(temperature: float, crop_id: Optional[str] = None, name:
                             <a class="preview-link"
                                 data-bs-toggle="popover"
                                 data-bs-trigger="hover"
-                                data-bs-html="true"
-                                data-bs-content="<div class='code-preview'>@router.get('/supplier/', response_model=List[SupplierInfo])
-async def get_supplier_info(poi_id: Optional[str] = None, supplier_name: Optional[str] = None):
-    query = 'SELECT * FROM `helios-tech-interview-project.shared.places_of_interest`'
-    if poi_id:
-        query += f" WHERE poi_id = '{poi_id}'"
-    if supplier_name:
-        query += f" WHERE supplier_name = '{supplier_name}'"
-    return bq.exec_query_bq(query)</div>">
+                                data-bs-html="true">
                                 <i class="bi bi-eye-fill"></i>
                                 /supplier/
                             </a>
                             <a href="javascript:void(0)" 
-                               onclick="viewCode('GET /supplier/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent, 'supplier')"
+                               onclick="viewCode('supplier')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
                                 View Full Code
@@ -797,20 +569,12 @@ async def get_supplier_info(poi_id: Optional[str] = None, supplier_name: Optiona
                             <a class="preview-link"
                                 data-bs-toggle="popover"
                                 data-bs-trigger="hover"
-                                data-bs-html="true"
-                                data-bs-content="<div class='code-preview'>@router.get('/growing-info/', response_model=List[model.GrowingInfo])
-async def get_growing_info(h3index_num: Optional[int] = None, crop_id: Optional[str] = None):
-    query = 'SELECT * FROM `helios-tech-interview-project.result_test.tb_1_growing_seasons` WHERE 1=1'
-    if h3index_num:
-        query += f" AND h3index_num = {h3index_num}"
-    if crop_id:
-        query += f" AND crop_id = '{crop_id}'"
-    return bq.exec_query_bq(query)</div>">
+                                data-bs-html="true">
                                 <i class="bi bi-eye-fill"></i>
                                 /growing-info/
                             </a>
                             <a href="javascript:void(0)" 
-                               onclick="viewCode('GET /growing-info/ Endpoint', document.querySelector('#endpointsModal .code-block code').textContent)"
+                               onclick="viewCode('growing-info')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
                                 View Full Code
@@ -847,19 +611,12 @@ async def get_growing_info(h3index_num: Optional[int] = None, crop_id: Optional[
                             <a class="preview-link"
                                 data-bs-toggle="popover"
                                 data-bs-trigger="hover"
-                                data-bs-html="true"
-                                data-bs-content="<div class='code-preview'>class Crop(BaseModel):
-    name: str
-    temp_min: float
-    temp_max: float
-
-class CropInfo(Crop):
-    crop_id: str</div>">
+                                data-bs-html="true">
                                 <i class="bi bi-eye-fill"></i>
                                 Crop Models
                             </a>
                             <a href="javascript:void(0)" 
-                               onclick="viewCode('Crop Models', document.querySelector('#modelsModal .code-block code').textContent)"
+                               onclick="viewCode('crop-models')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
                                 View Full Code
@@ -882,21 +639,12 @@ class CropInfo(Crop):
                             <a class="preview-link"
                                 data-bs-toggle="popover"
                                 data-bs-trigger="hover"
-                                data-bs-html="true"
-                                data-bs-content="<div class='code-preview'>class Supplier(BaseModel):
-    supplier_name: str  
-    country_code: str
-    country_name: str
-    h3index_num: int
-    crop_id: str
-
-class SupplierInfo(Supplier):
-    poi_id: str</div>">
+                                data-bs-html="true">
                                 <i class="bi bi-eye-fill"></i>
                                 Supplier Models
                             </a>
                             <a href="javascript:void(0)" 
-                               onclick="viewCode('Supplier Models', document.querySelector('#modelsModal .code-block code').textContent)"
+                               onclick="viewCode('supplier-models')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
                                 View Full Code
@@ -917,24 +665,12 @@ class SupplierInfo(Supplier):
                             <a class="preview-link"
                                 data-bs-toggle="popover"
                                 data-bs-trigger="hover"
-                                data-bs-html="true"
-                                data-bs-content="<div class='code-preview'>class Growing(BaseModel):
-    h3index_num: int
-    crop_id: str
-    season_start_week: int
-    season_end_week: int
-    season_start_date: date
-    season_end_date: date
-    length_of_season_weeks: int
-    length_of_season_days: int
-
-class GrowingInfo(Growing):
-    pass</div>">
+                                data-bs-html="true">
                                 <i class="bi bi-eye-fill"></i>
                                 Growing Models
                             </a>
                             <a href="javascript:void(0)" 
-                               onclick="viewCode('Growing Models', document.querySelector('#modelsModal .code-block code').textContent)"
+                               onclick="viewCode('growing-models')"
                                class="code-link">
                                 <i class="bi bi-code-square"></i>
                                 View Full Code
@@ -951,224 +687,6 @@ class GrowingInfo(Growing):
                 </ul>
             </div>
         </section>
-    </div>
-
-    <!-- Modals -->
-    <!-- Views Modal -->
-    <div class="modal fade" id="viewsModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">View Definitions</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="code-block">
-                        <pre><code>-- vw_weight View
-CREATE OR REPLACE VIEW `helios-tech-interview-project.result_test.vw_weight`
-AS
-SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-1  AS pr_year UNION ALL
-SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-2  AS pr_year UNION ALL
-SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-3  AS pr_year UNION ALL
-SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-4  AS pr_year UNION ALL
-SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-5  AS pr_year UNION ALL
-SELECT CAST(.10 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-6  AS pr_year UNION ALL
-SELECT CAST(.08 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-7  AS pr_year UNION ALL
-SELECT CAST(.04 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-8  AS pr_year UNION ALL
-SELECT CAST(.02 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-9  AS pr_year UNION ALL
-SELECT CAST(.01 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-10 AS pr_year</code></pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Functions Modal -->
-    <div class="modal fade" id="functionsModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Function Definitions</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="code-block">
-                        <pre><code>-- First Day of Week Function
-CREATE OR REPLACE FUNCTION `helios-tech-interview-project.result_test.fc_first_day_week_of_year`(YEAR INT64, WEEK_NUM INT64) 
-RETURNS DATE AS (
-(    
-    WITH 
-    -- Capturing the 7 days prior to the 1st day of the year
-    CTE_DATES AS (
-      SELECT
-        DATE_ADD(DATE(YEAR, 1, 1), INTERVAL -x DAY) AS date_in_range
-      FROM UNNEST(GENERATE_ARRAY(0, 7)) AS x
-      ORDER BY 1
-    )
-    ,CTE_WEEK_NUMBER AS (
-      SELECT 
-        * 
-        ,EXTRACT(ISOWEEK FROM date_in_range) AS week_number
-      FROM CTE_DATES
-    )
-    ,CTE_FIRST_DAY AS (
-      SELECT 
-        MIN(date_in_range) AS first_day_of_week
-      FROM CTE_WEEK_NUMBER 
-      WHERE week_number = 1
-    )
-
-    SELECT 
-      DATE_ADD(
-        (SELECT first_day_of_week FROM CTE_FIRST_DAY),
-        INTERVAL (WEEK_NUM - 1) WEEK
-      ) AS first_day_of_week
-  )
-);</code></pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Procedures Modal -->
-    <div class="modal fade" id="proceduresModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Procedure Definitions</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="code-block">
-                        <pre><code>-- API Crop Risk Procedure
-CREATE OR REPLACE PROCEDURE `helios-tech-interview-project.result_test.pr_3_api_crop_risk`(
-    pr_crop_id_or_name STRING, 
-    actual_temp FLOAT64
-)
-BEGIN
-  #### pr_crop_id_or_name: This parameter accepts only string values​ ​and can receive either the crop_id or the name of the crop.
-  #### actual_temp:  Current temperature
-    
-  SELECT DISTINCT
-      crop_id, name, temp_min, temp_max, actual_temp as temperature
-      ,CASE 
-        WHEN actual_temp > temp_min AND actual_temp < temp_max
-        THEN 1 --Inside the Range
-        ELSE 0 --Out of Range
-      END AS risk_status
-      ,CASE 
-        WHEN actual_temp > temp_min AND actual_temp < temp_max
-        THEN 'in season' --Inside the Range
-        ELSE 'out of season' --Out of Range
-      END AS risk_desc
-  FROM `helios-tech-interview-project.shared.crop_info`
-  WHERE crop_id = pr_crop_id_or_name
-  OR name = pr_crop_id_or_name;  
-END;</code></pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Endpoints Modal -->
-    <div class="modal fade" id="endpointsModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">API Endpoints Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="code-block">
-                        <pre><code>@router.get("/crop-info/", response_model=List[model.CropInfo])
-async def get_crop_info(crop_id: Optional[str] = None, name: Optional[str] = None):
-    """    
-    Get crop information by passing crop id or name. 
-    At least one parameter must be provided.
-    """
-    if not crop_id and not name:
-        raise HTTPException(
-            status_code=400,
-            detail="Either crop_id or name must be provided"
-        )
-
-    query = "SELECT * FROM `helios-tech-interview-project.shared.crop_info`"
-    
-    if crop_id:
-        query += f" WHERE crop_id = '{crop_id}'"        
-    if name:
-        query += f" WHERE name = '{name}'"        
-
-    return bq.exec_query_bq(query)
-
-@router.post("/crop-insert/", response_model=dict)
-async def create_crop(crop: model.CropCreate):
-    """
-    Create a new crop
-    """
-    query = f"""INSERT INTO `helios-tech-interview-project.shared.crop_info` 
-                (crop_id, name, temp_min, temp_max) 
-                VALUES (
-                    GENERATE_UUID()
-                    ,'{crop.name}'
-                    ,{crop.temp_min}
-                    ,{crop.temp_max}
-                )"""
-
-    return bq.exec_dml_query_bq(query)
-
-@router.get("/crop-risk-temp/", response_model=List[model.CropInfo])
-async def get_crop_risk(temperature: float, crop_id: Optional[str] = None, name: Optional[str] = None):
-    """    
-    Get information about the crop risk by entering the temperature and either crop_id or name.
-    """
-    if not crop_id and not name:
-        raise HTTPException(
-            status_code=400,
-            detail="Either crop_id or name must be provided"
-        )
-
-    search_value = crop_id if crop_id else name
-    query = f"CALL `helios-tech-interview-project.result_test.pr_3_api_crop_risk`('{search_value}', {temperature});"
-    
-    return bq.exec_query_bq(query)</code></pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Models Modal -->
-    <div class="modal fade" id="modelsModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Data Models</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="code-block">
-                        <pre><code>class Crop(BaseModel):
-    name: str
-    temp_min: float
-    temp_max: float
-
-class CropInfo(Crop):
-    crop_id: str    
-    pass
-
-class CropCreate(Crop):
-    pass
-
-class CropUpdate(Crop):
-    crop_id: str
-    pass</code></pre>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Code Modal -->
@@ -1188,76 +706,514 @@ class CropUpdate(Crop):
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        const codeSnippets = {
+            "vw_weight": {
+                title: "View: vw_weight",
+                language: "sql",
+                code: `CREATE OR REPLACE VIEW \`helios-tech-interview-project.result_test.vw_weight\`
+AS
+SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-1  AS pr_year UNION ALL
+SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-2  AS pr_year UNION ALL
+SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-3  AS pr_year UNION ALL
+SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-4  AS pr_year UNION ALL
+SELECT CAST(.15 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-5  AS pr_year UNION ALL
+SELECT CAST(.10 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-6  AS pr_year UNION ALL
+SELECT CAST(.08 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-7  AS pr_year UNION ALL
+SELECT CAST(.04 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-8  AS pr_year UNION ALL
+SELECT CAST(.02 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-9  AS pr_year UNION ALL
+SELECT CAST(.01 AS FLOAT64) AS pr_weight, EXTRACT(YEAR FROM CURRENT_DATE())-10 AS pr_year`
+            },
+            "fc_first_day_week_of_year": {
+                title: "Function: First Day of Week",
+                language: "sql",
+                code: `CREATE OR REPLACE FUNCTION \`helios-tech-interview-project.result_test.fc_first_day_week_of_year\`(YEAR INT64, WEEK_NUM INT64) RETURNS DATE AS (
+(    
+    WITH 
+    -- Capturing the 7 days prior to the 1st day of the year
+    CTE_DATES AS (
+      SELECT
+        DATE_ADD(DATE(YEAR, 1, 1), INTERVAL -x DAY) AS date_in_range
+      FROM UNNEST(GENERATE_ARRAY(0, 7)) AS x -- Generates an array with 8 elements, representing the days from 0 to 7
+      ORDER BY 1
+    )
+    ,CTE_WEEK_NUMBER AS (
+      SELECT 
+        * 
+        ,EXTRACT(ISOWEEK FROM date_in_range) AS week_number -- Extracts the ISO week number from the date_in_range
+      FROM CTE_DATES
+    )
+    ,CTE_FIRST_DAY AS (
+      SELECT 
+        MIN(date_in_range) AS first_day_of_week -- Finds the first day of the week
+      FROM CTE_WEEK_NUMBER 
+      WHERE week_number = 1 -- Filters to find the first week of the year
+    )
+
+    -- Adds the specified number of weeks (WEEK_NUM) to the first day of the first week
+    SELECT 
+      DATE_ADD(
+        (SELECT first_day_of_week FROM CTE_FIRST_DAY), -- Gets the first day of the first week
+        INTERVAL (WEEK_NUM - 1) WEEK -- Adds the number of weeks specified by WEEK_NUM
+      ) AS first_day_of_week -- Returns the first day of the desired week
+
+  )
+);`
+            },
+            "fc_end_day_week_of_year": {
+                title: "Function: Last Day of Week",
+                language: "sql",
+                code: `CREATE OR REPLACE FUNCTION \`helios-tech-interview-project.result_test.fc_end_day_week_of_year\`(YEAR INT64, WEEK_NUM INT64) RETURNS DATE AS (
+(    
+    SELECT DATE(\`helios-tech-interview-project.result_test.fc_first_day_week_of_year\`(YEAR, WEEK_NUM) + INTERVAL 6 DAY)
+  )
+);`
+            },
+            "pr_1_calculate_growing": {
+                title: "Procedure: Calculate Growing Seasons",
+                language: "sql",
+                code: `CREATE OR REPLACE PROCEDURE \`helios-tech-interview-project.result_test.pr_1_calculate_growing\`(pr_h3_index INT64, pr_crop_id_or_name STRING)
+BEGIN
+  DECLARE table_exists BOOL;
+
+  /** 
+   * #### h3_index_param
+   * This procedure needs to be run for each h3index_num (tied to a specific location) 
+   * as each location has different climatic conditions affecting the growing season.
+   **/
+
+  /** 
+   * #### pr_crop_id_or_name
+   * Accepts either crop_id or crop name as a string to filter the crop information.
+   **/
+  
+  CREATE TEMP TABLE TBL_TEMP AS
+  
+  WITH 
+  CTE_CROP_TEMP AS (
+    -- Fetch crop temperature range (min and max) based on provided crop_id or name
+    SELECT DISTINCT
+      1 AS id, crop_id, temp_min, temp_max 
+    FROM \`shared.crop_info\`
+    WHERE crop_id = pr_crop_id_or_name
+    OR name = pr_crop_id_or_name
+  )
+  
+  ,CTE_WEEKLY_AVG AS (
+      -- Calculate weekly average min and max temperature for the given h3index_num and year range
+      SELECT  
+        wi.h3index_num,
+        wi.date_on_year, 
+        wi.date_on_week,
+        AVG(wi.tempmin) AS tempmin_wk_avg,
+        AVG(wi.tempmax) AS tempmax_wk_avg
+      FROM \`weather_data.historical_weather_raw_import\` wi
+      WHERE date_on_year >= (SELECT MIN(pr_year) FROM \`result_test.vw_weight\`)  -- Include data starting from the earliest year available for weight
+      AND wi.h3index_num = pr_h3_index
+      GROUP BY 1, 2, 3
+  )
+  
+  ,CTE_WEIGHTED_WEEKLY_AVG AS (
+    -- Compute weighted average temperature using the crop weight for each week
+    SELECT 
+      wk.h3index_num,
+      wk.date_on_week,
+      SUM(wk.tempmin_wk_avg * wg.pr_weight) AS weighted_mintemp_ten_yr_avg,
+      SUM(wk.tempmax_wk_avg * wg.pr_weight) AS weighted_maxtemp_ten_yr_avg
+    FROM CTE_WEEKLY_AVG wk
+    LEFT JOIN \`result_test.vw_weight\` wg ON wg.pr_year = wk.date_on_year  
+    GROUP BY 1, 2
+  )
+  
+  ,CTE_IN_SEASON AS (
+    -- Identify if the crop is in-season based on min/max temperatures
+    SELECT 
+      wa.h3index_num,
+      cr.crop_id,
+      wa.date_on_week,
+      wa.weighted_mintemp_ten_yr_avg,
+      wa.weighted_maxtemp_ten_yr_avg,
+      CASE
+        WHEN wa.weighted_mintemp_ten_yr_avg > cr.temp_min AND wa.weighted_maxtemp_ten_yr_avg < cr.temp_max 
+        THEN 1  -- Crop is in-season
+        ELSE 0   -- Crop is not in-season
+      END AS in_season        
+    FROM CTE_WEIGHTED_WEEKLY_AVG wa
+    LEFT JOIN CTE_CROP_TEMP cr ON cr.id = 1  
+  )
+
+  ,CTE_PREV_IN_SEASON AS (
+    -- Compare the current in_season with the previous week using LAG function
+    SELECT 
+        * EXCEPT(weighted_mintemp_ten_yr_avg, weighted_maxtemp_ten_yr_avg)
+        ,LAG(in_season) OVER (PARTITION BY h3index_num, crop_id ORDER BY date_on_week) AS previous_in_season
+    FROM CTE_IN_SEASON
+  )
+  
+  ,CTE_RANK AS (
+    -- Generate a rank sequence whenever there is a change in in_season (crop starts or ends season)
+    SELECT 
+        *    
+        ,SUM(CASE WHEN in_season != previous_in_season THEN 1 ELSE 0 END) 
+        OVER (PARTITION BY h3index_num, crop_id ORDER BY date_on_week) + 1 AS rank_group
+    FROM CTE_PREV_IN_SEASON  
+    ORDER BY 1, 2, 3
+  )
+  
+  ,CTE_SEASON_WEEK AS (
+    -- Calculate the start and end weeks of the growing season for each rank_group
+    SELECT
+      * EXCEPT(date_on_week, in_season, previous_in_season, rank_group)
+      ,MIN(date_on_week) AS season_start_week
+      ,MAX(date_on_week) AS season_end_week
+    FROM CTE_RANK
+    WHERE in_season = 1  -- Only consider rows where the crop is in-season
+    GROUP BY h3index_num, crop_id, rank_group
+  )
+  
+  ,CTE_SEASON_DATE AS (
+    -- Calculate the exact start and end date of the season based on the week range
+    SELECT
+      *
+      ,\`result_test.fc_first_day_week_of_year\`(EXTRACT(YEAR FROM CURRENT_DATE()), season_start_week) AS season_start_date
+      ,\`result_test.fc_end_day_week_of_year\`(EXTRACT(YEAR FROM CURRENT_DATE()), season_end_week) AS season_end_date
+      ,season_end_week - season_start_week AS length_of_season_weeks      
+    FROM CTE_SEASON_WEEK
+  )
+  
+  ,CTE_RESULT AS (
+    -- Calculate the number of days the growing season lasts
+    SELECT
+      *
+      ,DATE_DIFF(season_end_date, season_start_date, DAY) AS length_of_season_days
+    FROM CTE_SEASON_DATE
+  )
+
+  -- Final result selection
+  SELECT * FROM CTE_RESULT;
+
+  -- Check if the destination table already exists
+  SET table_exists = (
+    SELECT COUNT(*) > 0
+    FROM \`result_test\`.INFORMATION_SCHEMA.TABLES
+    WHERE table_name = 'tb_1_growing_seasons'
+  );
+
+  IF NOT table_exists THEN
+    -- Create the final table from the temporary table if it does not exist
+    CREATE TABLE \`result_test.tb_1_growing_seasons\` AS
+    SELECT * FROM TBL_TEMP;
+  ELSE
+    -- Delete existing records to avoid duplicates before inserting new data
+    DELETE FROM \`result_test.tb_1_growing_seasons\`
+    WHERE EXISTS (
+        SELECT 1
+        FROM TBL_TEMP tm
+        WHERE tm.h3index_num = \`result_test.tb_1_growing_seasons\`.h3index_num
+          AND tm.crop_id = \`result_test.tb_1_growing_seasons\`.crop_id
+    );
+
+    -- Insert the new data into the table
+    INSERT INTO \`result_test.tb_1_growing_seasons\`
+    SELECT * FROM TBL_TEMP;
+  END IF;
+
+END;`
+            },
+            "pr_2_daily_risk": {
+                title: "Procedure: Calculate Daily Risk",
+                language: "sql",
+                code: `CREATE OR REPLACE PROCEDURE \`helios-tech-interview-project.result_test.pr_2_daily_risk\`(pr_h3_index INT64, pr_crop_id_or_name STRING)
+BEGIN
+  /** 
+   * #### h3_index_param
+   * This procedure must be run for each h3index_num (linked to a specific lat/long) 
+   * as each location has slightly different climatic conditions.
+   **/
+   
+  /** 
+   * #### pr_crop_id_or_name
+   * Accepts either crop_id or crop name as a string to filter the crop information.
+   **/
+  
+  CREATE OR REPLACE TABLE \`helios-tech-interview-project.result_test.tb_2_daily_risk\`
+  AS
+  WITH 
+  CTE_Crop AS (
+    -- Get crop info (id, name, temperature range) for the specified crop_id or name
+    SELECT DISTINCT
+        crop_id, name, temp_min, temp_max 
+    FROM \`helios-tech-interview-project.shared.crop_info\`
+    WHERE crop_id = pr_crop_id_or_name
+    OR name = pr_crop_id_or_name
+  )
+  
+  ,CTE_Supplier AS (
+    -- Fetch suppliers for the given h3index_num and crop, joining with the crop info
+    SELECT 
+       sp.poi_id
+      ,sp.supplier_name
+      ,sp.h3index_num
+      ,sp.crop_id
+      ,cr.name as crop_name
+      ,cr.temp_min
+      ,cr.temp_max 
+    FROM \`helios-tech-interview-project.shared.places_of_interest\` sp
+    INNER JOIN CTE_Crop cr on cr.crop_id = sp.crop_id
+    WHERE sp.h3index_num = pr_h3_index
+  )
+  
+  ,CTE_Result AS (
+    -- Calculate risk status by checking if the daily temperature is within the crop's min/max temperature range
+    SELECT 
+    sp.* 
+    ,hs.date_on
+    ,hs.temp
+    ,CASE 
+        WHEN hs.temp > sp.temp_min AND hs.temp < sp.temp_max
+        THEN 0 -- Within the safe temperature range
+        ELSE 1 -- Outside the safe temperature range
+      END AS risk_status
+    FROM CTE_Supplier sp
+    INNER JOIN \`helios-tech-interview-project.weather_data.historical_weather_raw_import\` hs on hs.h3index_num = sp.h3index_num  
+  )
+
+  -- Final result selection, excluding some unnecessary columns for the final table
+  SELECT 
+    * EXCEPT(crop_name, temp_min, temp_max, temp) 
+  FROM CTE_Result
+  ;
+END;`
+            },
+            "pr_3_api_crop_risk": {
+                title: "Procedure: API Crop Risk",
+                language: "sql",
+                code: `CREATE OR REPLACE PROCEDURE \`helios-tech-interview-project.result_test.pr_3_api_crop_risk\`(pr_crop_id_or_name STRING, actual_temp FLOAT64)
+BEGIN
+  #### pr_crop_id_or_name: This parameter accepts only string values​ ​and can receive either the crop_id or the name of the crop.
+  #### actual_temp:  Current temperature
+    
+  SELECT DISTINCT
+      crop_id, name, temp_min, temp_max, actual_temp as temperature
+      ,CASE 
+        WHEN actual_temp > temp_min AND actual_temp < temp_max
+        THEN 1 --Inside the Range
+        ELSE 0 --Out of Range
+      END AS risk_status
+      ,CASE 
+        WHEN actual_temp > temp_min AND actual_temp < temp_max
+        THEN 'in season' --Inside the Range
+        ELSE 'out of season' --Out of Range
+      END AS risk_desc
+  FROM \`helios-tech-interview-project.shared.crop_info\`
+  WHERE crop_id = pr_crop_id_or_name
+  OR name = pr_crop_id_or_name;  
+END;`
+            },
+            "crop-info": {
+                title: "Endpoint: GET /crop-info/",
+                language: "python",
+                code: `@router.get("/crop-info/", response_model=List[model.CropInfo])
+async def get_crop_info(crop_id: Optional[str] = None, name: Optional[str] = None):
+    """    
+    Get crop information by passing crop id or name. 
+    - At least one parameter must be provided.
+    """
+    if not crop_id and not name:
+        raise HTTPException(
+            status_code=400,
+            detail="Either crop_id or name must be provided"
+        )
+
+    query = "SELECT * FROM \`helios-tech-interview-project.shared.crop_info\`"
+    
+    if crop_id:
+        query += f" WHERE crop_id = '{crop_id}'"        
+    if name:
+        query += f" WHERE name = '{name}'"        
+
+    return bq.exec_query_bq(query)`
+            },
+            "crop-insert": {
+                title: "Endpoint: POST /crop-insert/",
+                language: "python",
+                code: `@router.post("/crop-insert/", response_model=dict)
+async def create_crop(crop: model.CropCreate):
+    """
+    Create a new crop
+    """
+    # Check if crop_id already exists
+    query = f"""SELECT COUNT(*) as count 
+               FROM \`helios-tech-interview-project.shared.crop_info\` 
+               WHERE name = '{crop.name}'"""
+    
+    result = bq.exec_query_bq(query)
+    if result[0]["count"] > 0:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Crop with name {crop.name} already exists"
+        )
+    
+    query = f"""INSERT INTO \`helios-tech-interview-project.shared.crop_info\` 
+                      (crop_id, name, temp_min, temp_max) 
+                      VALUES (
+                           GENERATE_UUID()
+                          ,'{crop.name}'
+                          ,{crop.temp_min}
+                          ,{crop.temp_max}
+                      )"""
+
+    return bq.exec_dml_query_bq(query)`
+            },
+            "crop-risk-temp": {
+                title: "Endpoint: GET /crop-risk-temp/",
+                language: "python",
+                code: `@router.get("/crop-risk-temp/", response_model=List[model.CropRisk])
+async def get_crop_risk(temperature: float, crop_id: Optional[str] = None, name: Optional[str] = None):
+    """    
+    Get information about the crop risk by entering the temperature and either crop_id or name.
+    
+    Parameters:
+    - temperature: Current temperature to check risk
+    - crop_id: Optional crop ID
+    - name: Optional crop name
+    At least crop_id or name must be provided.
+    """
+    if not crop_id and not name:
+        raise HTTPException(
+            status_code=400,
+            detail="Either crop_id or name must be provided"
+        )
+
+    search_value = crop_id if crop_id else name
+    query = f"CALL \`helios-tech-interview-project.result_test.pr_3_api_crop_risk\`('{search_value}', {temperature});"
+    
+    return bq.exec_query_bq(query)`
+            },
+            "supplier": {
+                title: "Endpoint: GET /supplier/",
+                language: "python",
+                code: `@router.get("/supplier/", response_model=List[SupplierInfo])
+async def get_supplier_info(poi_id: Optional[str] = None, supplier_name: Optional[str] = None):
+    """    
+    Get supplier information by passing supplier id or supplier name. 
+    At least one parameter must be provided.
+    """
+    if not poi_id and not supplier_name:
+        raise HTTPException(
+            status_code=400,
+            detail="Either poi_id or supplier_name must be provided"
+        )
+
+    query = "SELECT * FROM \`helios-tech-interview-project.shared.places_of_interest\`"      
+    
+    if poi_id:
+        query += f" WHERE poi_id = '{poi_id}'"
+    if supplier_name:
+        query += f" WHERE supplier_name = '{supplier_name}'"
+
+    return bq.exec_query_bq(query)`
+            },
+            "growing-info": {
+                title: "Endpoint: GET /growing-info/",
+                language: "python",
+                code: `@router.get("/growing-info/", response_model=List[model.GrowingInfo])
+async def get_growing_info(h3index_num: Optional[int] = None, crop_id: Optional[str] = None):
+    """    
+    Get growing seasons information by passing h3index_num or crop_id. 
+    - At least one parameter must be provided.
+    """
+    if not h3index_num and not crop_id:
+        raise HTTPException(
+            status_code=400,
+            detail="Either h3index_num or crop_id must be provided"
+        )
+
+    query = "SELECT * FROM \`helios-tech-interview-project.result_test.tb_1_growing_seasons\` WHERE 1=1"
+
+    if h3index_num:
+        query += f" AND h3index_num = {h3index_num}"        
+    if crop_id:
+        query += f" AND crop_id = '{crop_id}'"        
+
+    return bq.exec_query_bq(query)`
+            },
+            "crop-models": {
+                title: "Models: Crop Models",
+                language: "python",
+                code: `class Crop(BaseModel):
+    name: str
+    temp_min: float
+    temp_max: float
+
+class CropInfo(Crop):
+    crop_id: str    
+    pass
+
+class CropCreate(Crop):
+    pass
+
+class CropRisk(Crop):
+    temperature: float
+    risk_status: int
+    risk_desc: str
+    pass`
+            },
+            "supplier-models": {
+                title: "Models: Supplier Models",
+                language: "python",
+                code: `class Supplier(BaseModel):
+    supplier_name: str  
+    country_code: str
+    country_name: str
+    h3index_num: int
+    crop_id: str 
+
+class SupplierInfo(Supplier):
+    poi_id: str
+    pass`
+            },
+            "growing-models": {
+                title: "Models: Growing Models",
+                language: "python",
+                code: `class Growing(BaseModel):
+    h3index_num: int
+    crop_id: str
+    season_start_week: int
+    season_end_week: int
+    season_start_date: date
+    season_end_date: date
+    length_of_season_weeks: int
+    length_of_season_days: int
+
+class GrowingInfo(Growing):
+    pass`
+            }
+        };
+
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize highlight.js
             hljs.highlightAll();
-
-            // Initialize all popovers
-            const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-            
-            popoverTriggerList.forEach(function(popoverTriggerEl) {
-                const content = popoverTriggerEl.getAttribute('data-bs-content');
-                const title = popoverTriggerEl.textContent.trim();
-                
-                new bootstrap.Popover(popoverTriggerEl, {
-                    trigger: 'hover',
-                    html: true,
-                    placement: 'right',
-                    content: content,
-                    delay: { show: 100, hide: 100 },
-                    container: 'body',
-                    animation: true,
-                    sanitize: false
-                });
-            });
         });
 
-        function copyCode(button) {
-            const codeElement = button.closest('.preview-container').querySelector('code');
-            const code = codeElement.textContent;
-            navigator.clipboard.writeText(code);
-            
-            const icon = button.querySelector('i');
-            icon.classList.remove('bi-clipboard');
-            icon.classList.add('bi-clipboard-check');
-            
-            setTimeout(() => {
-                icon.classList.remove('bi-clipboard-check');
-                icon.classList.add('bi-clipboard');
-            }, 2000);
-        }
+        function viewCode(id) {
+            const snippet = codeSnippets[id];
+            if (!snippet) {
+                console.error('Code snippet not found:', id);
+                return;
+            }
 
-        function viewCode(title, code, type) {
             const modal = document.getElementById('codeModal');
             const modalTitle = modal.querySelector('.modal-title');
             const modalBody = modal.querySelector('.modal-body pre code');
             
-            modalTitle.textContent = title;
-            
-            if (type === 'supplier') {
-                modalBody.textContent = code.split('@router.get(\'/supplier/\')')[1];
-            } else if (type === 'growing') {
-                modalBody.textContent = code.split('@router.get(\'/growing-info/\')')[1];
-            } else {
-                modalBody.textContent = code;
-            }
+            modalTitle.textContent = snippet.title;
+            modalBody.textContent = snippet.code;
+            modalBody.className = `language-${snippet.language}`;
             
             hljs.highlightElement(modalBody);
             const bsModal = new bootstrap.Modal(modal);
             bsModal.show();
         }
-
-        // Close popover when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('[data-bs-toggle="popover"]')) {
-                document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(popover) {
-                    const instance = bootstrap.Popover.getInstance(popover);
-                    if (instance) {
-                        instance.hide();
-                    }
-                });
-            }
-        });
     </script>
 </body>
 </html> 
