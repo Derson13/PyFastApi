@@ -8,8 +8,8 @@ Before running the project, you need to download the **Google Cloud Service Acco
 1. In the **root directory** of the project.
 2. In the **`bq_start`** folder.
 
-The file should be named `service-api.json`.
----
+- The file should be named `service-api.json`.
+
 
 This FastAPI application provides an API to query crop information from BigQuery in the Helios Tech Interview Project.
 [Helios Tech Interview API](https://helios-api-200118253515.us-east1.run.app/docs)
